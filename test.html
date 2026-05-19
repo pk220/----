@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>测试</title>
+</head>
+<body style="font-family:sans-serif;padding:20px;">
+<h2>待办测试</h2>
+<input type="text" id="input" placeholder="输入内容" style="padding:8px;width:200px;">
+<button onclick="add()" style="padding:8px 16px;">添加</button>
+<div id="list" style="margin-top:20px;"></div>
+<script>
+var items = [];
+function add() {
+  var input = document.getElementById('input');
+  var text = input.value.trim();
+  if (!text) return;
+  items.push(text);
+  input.value = '';
+  render();
+}
+function render() {
+  var html = '';
+  for (var i = 0; i < items.length; i++) {
+    html += '<p>' + items[i] + '</p>';
+  }
+  document.getElementById('list').innerHTML = html;
+}
+</script>
+</body>
+</html>
