@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>我的手账待办</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png" type="image/png">
@@ -13,33 +13,10 @@
 <meta name="apple-mobile-web-app-title" content="手账待办">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
-:root {
-  --bg: #fdf6ec;
-  --card: #fffdf7;
-  --text: #5a4a3a;
-  --text-light: #9a8a7a;
-  --border: #e8ddd0;
-  --pink: #f4c7c3;
-  --blue: #c3d9f4;
-  --green: #c7e6c9;
-  --yellow: #f5e6a3;
-  --purple: #d5c3f4;
-  --orange: #f5d0a9;
-  --red: #f4a0a0;
-  --pink-dark: #e8a0a0;
-  --blue-dark: #9bb8e0;
-  --green-dark: #a0d0a4;
-  --yellow-dark: #e0cc80;
-  --purple-dark: #b8a0e0;
-  --orange-dark: #e0b880;
-  --red-dark: #e08080;
-}
-
 body {
-  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', cursive, sans-serif;
-  background: var(--bg);
-  color: var(--text);
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  background: #fdf6ec;
+  color: #5a4a3a;
   min-height: 100vh;
   padding: 20px;
   background-image:
@@ -47,496 +24,97 @@ body {
     radial-gradient(circle at 80% 20%, rgba(195,217,244,0.15) 0%, transparent 50%),
     radial-gradient(circle at 50% 80%, rgba(199,230,201,0.15) 0%, transparent 50%);
 }
+.container { max-width: 600px; margin: 0 auto; }
 
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.title {
-  text-align: center;
-  font-size: 2rem;
-  color: var(--text);
-  margin-bottom: 6px;
-  letter-spacing: 2px;
-}
-.title-icon { font-size: 1.6rem; }
-.subtitle {
-  text-align: center;
-  font-size: 0.95rem;
-  color: var(--text-light);
-  margin-bottom: 24px;
-}
+.title { text-align: center; font-size: 2rem; margin-bottom: 6px; letter-spacing: 2px; }
+.subtitle { text-align: center; font-size: 0.95rem; color: #9a8a7a; margin-bottom: 24px; }
 
 .progress-bar-wrap {
-  background: var(--card);
-  border: 1.5px dashed var(--border);
-  border-radius: 14px;
-  padding: 12px 18px;
-  margin-bottom: 16px;
+  background: #fffdf7; border: 1.5px dashed #e8ddd0; border-radius: 14px;
+  padding: 12px 18px; margin-bottom: 16px;
 }
-.progress-label {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.85rem;
-  color: var(--text-light);
-  margin-bottom: 8px;
-}
-.progress-track {
-  height: 10px;
-  background: var(--bg);
-  border-radius: 6px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-}
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--green), var(--blue));
-  border-radius: 6px;
-  transition: width 0.5s ease;
-  min-width: 0;
-}
+.progress-label { display: flex; justify-content: space-between; font-size: 0.85rem; color: #9a8a7a; margin-bottom: 8px; }
+.progress-track { height: 10px; background: #fdf6ec; border-radius: 6px; overflow: hidden; border: 1px solid #e8ddd0; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, #c7e6c9, #c3d9f4); border-radius: 6px; transition: width 0.5s ease; }
 
-.stats {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-bottom: 20px;
-}
-.stat-item {
-  background: var(--card);
-  border: 1.5px dashed var(--border);
-  border-radius: 14px;
-  padding: 8px 16px;
-  font-size: 0.85rem;
-  color: var(--text-light);
-  text-align: center;
-}
-.stat-num {
-  font-size: 1.2rem;
-  color: var(--text);
-  margin-right: 3px;
-}
+.stats { display: flex; justify-content: center; gap: 16px; margin-bottom: 20px; }
+.stat-item { background: #fffdf7; border: 1.5px dashed #e8ddd0; border-radius: 14px; padding: 8px 16px; font-size: 0.85rem; color: #9a8a7a; text-align: center; }
+.stat-num { font-size: 1.2rem; color: #5a4a3a; margin-right: 3px; }
 
-.add-section {
-  background: var(--card);
-  border: 1.5px dashed var(--border);
-  border-radius: 18px;
-  padding: 18px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 12px rgba(90,74,58,0.06);
-}
-.add-row {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-.add-input {
-  flex: 1;
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  padding: 10px 14px;
-  font-family: inherit;
-  font-size: 1rem;
-  background: var(--bg);
-  color: var(--text);
-  outline: none;
-  transition: border-color 0.2s;
-}
-.add-input:focus { border-color: var(--pink-dark); }
-.add-input::placeholder { color: var(--text-light); opacity: 0.6; }
+.add-section { background: #fffdf7; border: 1.5px dashed #e8ddd0; border-radius: 18px; padding: 18px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(90,74,58,0.06); }
+.add-row { display: flex; gap: 10px; margin-bottom: 12px; }
+.add-input { flex: 1; border: 1.5px solid #e8ddd0; border-radius: 12px; padding: 10px 14px; font-size: 1rem; background: #fdf6ec; color: #5a4a3a; outline: none; }
+.add-input:focus { border-color: #e8a0a0; }
+.add-input::placeholder { color: #9a8a7a; opacity: 0.6; }
 
-.add-row2 {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-.time-input {
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  padding: 8px 12px;
-  font-family: inherit;
-  font-size: 0.9rem;
-  background: var(--bg);
-  color: var(--text);
-  outline: none;
-  flex: 1;
-  min-width: 150px;
-  transition: border-color 0.2s;
-}
-.time-input:focus { border-color: var(--pink-dark); }
+.add-row2 { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.time-input { border: 1.5px solid #e8ddd0; border-radius: 12px; padding: 8px 12px; font-size: 0.9rem; background: #fdf6ec; color: #5a4a3a; outline: none; flex: 1; min-width: 120px; }
+.time-input:focus { border-color: #e8a0a0; }
 
-.category-select {
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  padding: 8px 12px;
-  font-family: inherit;
-  font-size: 0.9rem;
-  background: var(--bg);
-  color: var(--text);
-  outline: none;
-  cursor: pointer;
-  min-width: 110px;
-  transition: border-color 0.2s;
-}
-.category-select:focus { border-color: var(--pink-dark); }
+.category-select { border: 1.5px solid #e8ddd0; border-radius: 12px; padding: 8px 12px; font-size: 0.9rem; background: #fdf6ec; color: #5a4a3a; outline: none; min-width: 110px; }
+.category-select:focus { border-color: #e8a0a0; }
 
-.quick-times {
-  display: flex;
-  gap: 6px;
-  margin-top: 10px;
-  flex-wrap: wrap;
-}
-.quick-time-btn {
-  border: 1.5px dashed var(--border);
-  background: var(--card);
-  color: var(--text-light);
-  border-radius: 16px;
-  padding: 4px 12px;
-  font-family: inherit;
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.quick-time-btn:hover, .quick-time-btn:active {
-  border-color: var(--pink-dark);
-  color: var(--text);
-  background: var(--pink);
-}
+.quick-times { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+.quick-time-btn { border: 1.5px dashed #e8ddd0; background: #fffdf7; color: #9a8a7a; border-radius: 16px; padding: 4px 12px; font-size: 0.8rem; cursor: pointer; }
+.quick-time-btn:active { background: #f4c7c3; color: #5a4a3a; }
 
-.add-btn {
-  border: none;
-  background: var(--pink);
-  color: var(--text);
-  border-radius: 12px;
-  padding: 8px 20px;
-  font-family: inherit;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  white-space: nowrap;
-}
-.add-btn:hover { background: var(--pink-dark); transform: scale(1.03); }
-.add-btn:active { transform: scale(0.97); }
+.add-btn { border: none; background: #f4c7c3; color: #5a4a3a; border-radius: 12px; padding: 8px 20px; font-size: 1rem; cursor: pointer; white-space: nowrap; }
+.add-btn:active { background: #e8a0a0; }
 
-.filter-section {
-  margin-bottom: 16px;
-}
-.filter-row {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 8px;
-}
-.filter-label {
-  font-size: 0.8rem;
-  color: var(--text-light);
-  margin-bottom: 4px;
-  display: block;
-}
-.filter-btn {
-  border: 1.5px solid var(--border);
-  background: var(--card);
-  color: var(--text-light);
-  border-radius: 20px;
-  padding: 5px 14px;
-  font-family: inherit;
-  font-size: 0.82rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.filter-btn:hover { border-color: var(--pink-dark); }
-.filter-btn.active {
-  background: var(--pink);
-  color: var(--text);
-  border-color: var(--pink);
-}
+.filter-section { margin-bottom: 16px; }
+.filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+.filter-label { font-size: 0.8rem; color: #9a8a7a; margin-bottom: 4px; display: block; }
+.filter-btn { border: 1.5px solid #e8ddd0; background: #fffdf7; color: #9a8a7a; border-radius: 20px; padding: 5px 14px; font-size: 0.82rem; cursor: pointer; }
+.filter-btn.active { background: #f4c7c3; color: #5a4a3a; border-color: #f4c7c3; }
 
-.clear-done-btn {
-  border: 1.5px dashed var(--border);
-  background: none;
-  color: var(--text-light);
-  border-radius: 12px;
-  padding: 4px 12px;
-  font-family: inherit;
-  font-size: 0.78rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  margin-left: auto;
-  align-self: center;
-}
-.clear-done-btn:hover { border-color: var(--red-dark); color: var(--red-dark); }
+.clear-done-btn { border: 1.5px dashed #e8ddd0; background: none; color: #9a8a7a; border-radius: 12px; padding: 4px 12px; font-size: 0.78rem; cursor: pointer; margin-left: auto; }
+.clear-done-btn:active { border-color: #e08080; color: #e08080; }
 
-.todo-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+.todo-list { display: flex; flex-direction: column; gap: 10px; }
 
-.todo-item {
-  background: var(--card);
-  border: 1.5px dashed var(--border);
-  border-radius: 16px;
-  padding: 14px 16px;
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  box-shadow: 0 1px 6px rgba(90,74,58,0.04);
-  transition: all 0.3s ease;
-  animation: slideIn 0.3s ease;
-  position: relative;
-}
-@keyframes slideIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.todo-item:hover {
-  box-shadow: 0 3px 12px rgba(90,74,58,0.1);
-}
+.todo-item { background: #fffdf7; border: 1.5px dashed #e8ddd0; border-radius: 16px; padding: 14px 16px; display: flex; align-items: flex-start; gap: 12px; animation: slideIn 0.3s ease; }
+@keyframes slideIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 .todo-item.completed { opacity: 0.55; }
-.todo-item.completed .todo-text {
-  text-decoration: line-through;
-  color: var(--text-light);
-}
-.todo-item.overdue {
-  border-color: var(--red-dark);
-  background: linear-gradient(135deg, var(--card) 0%, rgba(244,160,160,0.12) 100%);
-}
-.todo-item.due-today {
-  border-color: var(--yellow-dark);
-  background: linear-gradient(135deg, var(--card) 0%, rgba(245,230,163,0.15) 100%);
-}
+.todo-item.completed .todo-text { text-decoration: line-through; color: #9a8a7a; }
+.todo-item.overdue { border-color: #e08080; background: linear-gradient(135deg, #fffdf7 0%, rgba(244,160,160,0.12) 100%); }
+.todo-item.due-today { border-color: #e0cc80; background: linear-gradient(135deg, #fffdf7 0%, rgba(245,230,163,0.15) 100%); }
 
-.todo-check {
-  width: 22px;
-  height: 22px;
-  border: 2px solid var(--border);
-  border-radius: 50%;
-  cursor: pointer;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
-  margin-top: 2px;
-}
-.todo-check:hover { border-color: var(--pink-dark); }
-.todo-check.checked {
-  background: var(--green);
-  border-color: var(--green-dark);
-}
-.todo-check.checked::after {
-  content: '✓';
-  font-size: 14px;
-  color: var(--text);
-}
+.todo-check { width: 22px; height: 22px; border: 2px solid #e8ddd0; border-radius: 50%; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+.todo-check.checked { background: #c7e6c9; border-color: #a0d0a4; }
+.todo-check.checked::after { content: '✓'; font-size: 14px; color: #5a4a3a; }
 
 .todo-content { flex: 1; min-width: 0; }
-.todo-text {
-  font-size: 1rem;
-  line-height: 1.5;
-  word-break: break-all;
-}
-.todo-meta {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 6px;
-  flex-wrap: wrap;
-}
-.todo-time {
-  font-size: 0.8rem;
-  color: var(--text-light);
-  display: flex;
-  align-items: center;
-  gap: 3px;
-}
-.todo-time.overdue-time { color: var(--red-dark); font-weight: bold; }
-.todo-time.today-time { color: var(--yellow-dark); font-weight: bold; }
+.todo-text { font-size: 1rem; line-height: 1.5; word-break: break-all; }
+.todo-meta { display: flex; align-items: center; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+.todo-time { font-size: 0.8rem; color: #9a8a7a; }
+.todo-time.overdue-time { color: #e08080; font-weight: bold; }
+.todo-time.today-time { color: #e0cc80; font-weight: bold; }
 
-.category-tag {
-  font-size: 0.75rem;
-  padding: 2px 10px;
-  border-radius: 12px;
-  display: inline-block;
-}
-.cat-作业 { background: var(--blue); color: #4a6a8a; }
-.cat-会议 { background: var(--purple); color: #6a5a8a; }
-.cat-游戏 { background: var(--orange); color: #8a6a4a; }
-.cat-考试 { background: var(--red); color: #8a4a4a; }
-.cat-运动 { background: var(--green); color: #4a7a4a; }
-.cat-学习 { background: var(--yellow); color: #7a6a3a; }
-.cat-其他 { background: var(--pink); color: #8a5a5a; }
+.category-tag { font-size: 0.75rem; padding: 2px 10px; border-radius: 12px; display: inline-block; }
+.cat-作业 { background: #c3d9f4; color: #4a6a8a; }
+.cat-会议 { background: #d5c3f4; color: #6a5a8a; }
+.cat-游戏 { background: #f5d0a9; color: #8a6a4a; }
+.cat-考试 { background: #f4a0a0; color: #8a4a4a; }
+.cat-运动 { background: #c7e6c9; color: #4a7a4a; }
+.cat-学习 { background: #f5e6a3; color: #7a6a3a; }
+.cat-实验 { background: #b8e0f0; color: #3a6a7a; }
+.cat-其他 { background: #f4c7c3; color: #8a5a5a; }
 
-.todo-actions {
-  display: flex;
-  gap: 4px;
-  flex-shrink: 0;
-}
-.todo-action-btn {
-  border: none;
-  background: none;
-  color: var(--text-light);
-  cursor: pointer;
-  font-size: 0.95rem;
-  padding: 4px 6px;
-  border-radius: 8px;
-  transition: all 0.2s;
-  opacity: 0.35;
-}
-.todo-action-btn:hover { opacity: 1; }
-.todo-action-btn.edit-btn:hover { color: var(--blue-dark); background: rgba(195,217,244,0.3); }
-.todo-action-btn.del-btn:hover { color: var(--red-dark); background: rgba(244,160,160,0.15); }
+.todo-actions { display: flex; gap: 4px; flex-shrink: 0; }
+.todo-action-btn { border: none; background: none; color: #9a8a7a; cursor: pointer; font-size: 0.95rem; padding: 4px 6px; border-radius: 8px; opacity: 0.35; }
+.todo-action-btn:active { opacity: 1; }
 
-.todo-item.editing {
-  border-color: var(--blue-dark);
-  background: linear-gradient(135deg, var(--card) 0%, rgba(195,217,244,0.12) 100%);
-}
-.edit-input {
-  width: 100%;
-  border: 1.5px solid var(--border);
-  border-radius: 10px;
-  padding: 8px 10px;
-  font-family: inherit;
-  font-size: 1rem;
-  background: var(--bg);
-  color: var(--text);
-  outline: none;
-  margin-bottom: 8px;
-}
-.edit-input:focus { border-color: var(--blue-dark); }
-.edit-row {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.edit-row .time-input { flex: 1; min-width: 130px; }
-.edit-row .category-select { min-width: 100px; }
-.edit-save-btn {
-  border: none;
-  background: var(--green);
-  color: var(--text);
-  border-radius: 10px;
-  padding: 6px 14px;
-  font-family: inherit;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.edit-save-btn:hover { background: var(--green-dark); }
-.edit-cancel-btn {
-  border: 1.5px solid var(--border);
-  background: var(--card);
-  color: var(--text-light);
-  border-radius: 10px;
-  padding: 6px 14px;
-  font-family: inherit;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.edit-cancel-btn:hover { border-color: var(--pink-dark); }
+.confirm-overlay { position: fixed; inset: 0; background: rgba(90,74,58,0.2); display: flex; align-items: center; justify-content: center; z-index: 100; }
+.confirm-box { background: #fffdf7; border: 1.5px dashed #e8ddd0; border-radius: 18px; padding: 24px; max-width: 320px; width: 90%; text-align: center; box-shadow: 0 8px 30px rgba(90,74,58,0.15); }
+.confirm-text { font-size: 1.05rem; margin-bottom: 6px; }
+.confirm-sub { font-size: 0.85rem; color: #9a8a7a; margin-bottom: 18px; word-break: break-all; }
+.confirm-btns { display: flex; gap: 10px; justify-content: center; }
+.confirm-yes { border: none; background: #f4a0a0; color: #5a4a3a; border-radius: 12px; padding: 8px 22px; font-size: 0.95rem; cursor: pointer; }
+.confirm-no { border: 1.5px solid #e8ddd0; background: #fffdf7; color: #5a4a3a; border-radius: 12px; padding: 8px 22px; font-size: 0.95rem; cursor: pointer; }
 
-.confirm-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(90,74,58,0.2);
-  backdrop-filter: blur(2px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 100;
-  animation: fadeIn 0.2s ease;
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-.confirm-box {
-  background: var(--card);
-  border: 1.5px dashed var(--border);
-  border-radius: 18px;
-  padding: 24px;
-  max-width: 320px;
-  width: 90%;
-  text-align: center;
-  box-shadow: 0 8px 30px rgba(90,74,58,0.15);
-  animation: popIn 0.25s ease;
-}
-@keyframes popIn {
-  from { transform: scale(0.9); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-.confirm-text {
-  font-size: 1.05rem;
-  margin-bottom: 6px;
-}
-.confirm-sub {
-  font-size: 0.85rem;
-  color: var(--text-light);
-  margin-bottom: 18px;
-  word-break: break-all;
-}
-.confirm-btns {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
-.confirm-yes {
-  border: none;
-  background: var(--red);
-  color: var(--text);
-  border-radius: 12px;
-  padding: 8px 22px;
-  font-family: inherit;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.confirm-yes:hover { background: var(--red-dark); }
-.confirm-no {
-  border: 1.5px solid var(--border);
-  background: var(--card);
-  color: var(--text);
-  border-radius: 12px;
-  padding: 8px 22px;
-  font-family: inherit;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.confirm-no:hover { border-color: var(--pink-dark); }
+.toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #5a4a3a; color: #fffdf7; padding: 10px 24px; border-radius: 20px; font-size: 0.9rem; z-index: 200; pointer-events: none; }
 
-.toast {
-  position: fixed;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--text);
-  color: var(--card);
-  padding: 10px 24px;
-  border-radius: 20px;
-  font-family: inherit;
-  font-size: 0.9rem;
-  z-index: 200;
-  animation: toastIn 0.3s ease, toastOut 0.3s ease 1.5s forwards;
-  pointer-events: none;
-}
-@keyframes toastIn {
-  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
-  to { opacity: 1; transform: translateX(-50%) translateY(0); }
-}
-@keyframes toastOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-
-.empty-state {
-  text-align: center;
-  padding: 40px 20px;
-  color: var(--text-light);
-}
+.empty-state { text-align: center; padding: 40px 20px; color: #9a8a7a; }
 .empty-icon { font-size: 2.5rem; margin-bottom: 10px; }
 .empty-text { font-size: 1rem; }
 
@@ -555,7 +133,7 @@ body {
 <body>
 
 <div class="container">
-  <div class="title"><span class="title-icon">📒</span> 我的手账待办</div>
+  <div class="title">📒 我的手账待办</div>
   <div class="subtitle">记录每一件重要的事</div>
 
   <div class="progress-bar-wrap">
@@ -577,11 +155,11 @@ body {
   <div class="add-section">
     <div class="add-row">
       <input type="text" class="add-input" id="todoInput" placeholder="写下你要做的事..." maxlength="200">
-      <button class="add-btn" id="addBtn">添加</button>
+      <button class="add-btn" onclick="addTodo()">添加</button>
     </div>
     <div class="add-row2">
-      <input type="date" class="time-input" id="deadlineDate" placeholder="截止日期">
-      <input type="time" class="time-input" id="deadlineTime" placeholder="截止时间" style="min-width:100px;flex:0.6;">
+      <input type="date" class="time-input" id="deadlineDate">
+      <input type="time" class="time-input" id="deadlineTime" style="min-width:100px;flex:0.6;">
       <select class="category-select" id="categorySelect">
         <option value="其他">📌 分类</option>
         <option value="作业">📚 作业</option>
@@ -590,38 +168,39 @@ body {
         <option value="考试">📝 考试</option>
         <option value="运动">⚽ 运动</option>
         <option value="学习">📖 学习</option>
-        <option value="其他">📎 其他</option>
+        <option value="实验">🔬 实验</option>
       </select>
     </div>
     <div class="quick-times">
-      <button class="quick-time-btn" data-offset="0">今天</button>
-      <button class="quick-time-btn" data-offset="1">明天</button>
-      <button class="quick-time-btn" data-offset="2">后天</button>
-      <button class="quick-time-btn" data-offset="7">下周</button>
+      <button class="quick-time-btn" onclick="setQuickTime(0)">今天</button>
+      <button class="quick-time-btn" onclick="setQuickTime(1)">明天</button>
+      <button class="quick-time-btn" onclick="setQuickTime(2)">后天</button>
+      <button class="quick-time-btn" onclick="setQuickTime(7)">下周</button>
     </div>
   </div>
 
   <div class="filter-section">
     <span class="filter-label">按状态：</span>
-    <div class="filter-row">
-      <button class="filter-btn active" data-filter="all" data-type="status">全部</button>
-      <button class="filter-btn" data-filter="active" data-type="status">待完成</button>
-      <button class="filter-btn" data-filter="completed" data-type="status">已完成</button>
-      <button class="filter-btn" data-filter="overdue" data-type="status">已过期</button>
+    <div class="filter-row" id="statusFilters">
+      <button class="filter-btn active" onclick="setStatusFilter('all',this)">全部</button>
+      <button class="filter-btn" onclick="setStatusFilter('active',this)">待完成</button>
+      <button class="filter-btn" onclick="setStatusFilter('completed',this)">已完成</button>
+      <button class="filter-btn" onclick="setStatusFilter('overdue',this)">已过期</button>
     </div>
     <span class="filter-label">按分类：</span>
     <div class="filter-row" id="categoryFilters">
-      <button class="filter-btn active" data-filter="all" data-type="category">全部</button>
-      <button class="filter-btn" data-filter="作业" data-type="category">📚 作业</button>
-      <button class="filter-btn" data-filter="会议" data-type="category">💼 会议</button>
-      <button class="filter-btn" data-filter="游戏" data-type="category">🎮 游戏</button>
-      <button class="filter-btn" data-filter="考试" data-type="category">📝 考试</button>
-      <button class="filter-btn" data-filter="运动" data-type="category">⚽ 运动</button>
-      <button class="filter-btn" data-filter="学习" data-type="category">📖 学习</button>
-      <button class="filter-btn" data-filter="其他" data-type="category">📎 其他</button>
+      <button class="filter-btn active" onclick="setCatFilter('all',this)">全部</button>
+      <button class="filter-btn" onclick="setCatFilter('作业',this)">📚 作业</button>
+      <button class="filter-btn" onclick="setCatFilter('会议',this)">💼 会议</button>
+      <button class="filter-btn" onclick="setCatFilter('游戏',this)">🎮 游戏</button>
+      <button class="filter-btn" onclick="setCatFilter('考试',this)">📝 考试</button>
+      <button class="filter-btn" onclick="setCatFilter('运动',this)">⚽ 运动</button>
+      <button class="filter-btn" onclick="setCatFilter('学习',this)">📖 学习</button>
+      <button class="filter-btn" onclick="setCatFilter('实验',this)">🔬 实验</button>
+      <button class="filter-btn" onclick="setCatFilter('其他',this)">📎 其他</button>
     </div>
-    <div class="filter-row" style="justify-content: flex-end;">
-      <button class="clear-done-btn" id="clearDoneBtn">清除已完成</button>
+    <div style="display:flex;justify-content:flex-end;">
+      <button class="clear-done-btn" onclick="clearDone()">清除已完成</button>
     </div>
   </div>
 
@@ -629,429 +208,365 @@ body {
 </div>
 
 <script>
-(function() {
-  var STORAGE_KEY = 'my-todo-journal';
+var STORAGE_KEY = 'my-todo-journal';
 
-  var CATEGORIES = {
-    '作业': { emoji: '📚', css: 'cat-作业' },
-    '会议': { emoji: '💼', css: 'cat-会议' },
-    '游戏': { emoji: '🎮', css: 'cat-游戏' },
-    '考试': { emoji: '📝', css: 'cat-考试' },
-    '运动': { emoji: '⚽', css: 'cat-运动' },
-    '学习': { emoji: '📖', css: 'cat-学习' },
-    '其他': { emoji: '📎', css: 'cat-其他' }
-  };
+var CATEGORIES = {
+  '作业': { emoji: '📚', css: 'cat-作业' },
+  '会议': { emoji: '💼', css: 'cat-会议' },
+  '游戏': { emoji: '🎮', css: 'cat-游戏' },
+  '考试': { emoji: '📝', css: 'cat-考试' },
+  '运动': { emoji: '⚽', css: 'cat-运动' },
+  '学习': { emoji: '📖', css: 'cat-学习' },
+  '实验': { emoji: '🔬', css: 'cat-实验' },
+  '其他': { emoji: '📎', css: 'cat-其他' }
+};
 
-  var todos = [];
+var todos = [];
+var filterStatus = 'all';
+var filterCategory = 'all';
+var editingId = null;
+
+// 加载数据
+try {
+  var saved = localStorage.getItem(STORAGE_KEY);
+  if (saved) {
+    todos = JSON.parse(saved);
+    if (!Array.isArray(todos)) todos = [];
+  }
+} catch(e) { todos = []; }
+
+// 兼容旧数据
+for (var i = 0; i < todos.length; i++) {
+  if (!todos[i].category) todos[i].category = '其他';
+  if (!todos[i].deadline) todos[i].deadline = null;
+}
+
+function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+function save() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(todos)); } catch(e) {}
+}
+
+function showToast(msg) {
+  var t = document.createElement('div');
+  t.className = 'toast';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(function() { t.remove(); }, 1500);
+}
+
+function escapeHtml(str) {
+  var d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+// 设置默认截止时间
+function setDefaultDeadline() {
   try {
-    var saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      todos = JSON.parse(saved);
-      if (!Array.isArray(todos)) todos = [];
-    }
-  } catch(e) {
-    todos = [];
-  }
-  // 兼容旧数据
-  for (var i = 0; i < todos.length; i++) {
-    if (!todos[i].category) todos[i].category = '其他';
-    if (!todos[i].deadline) todos[i].deadline = null;
-  }
+    var tmr = new Date(Date.now() + 86400000);
+    document.getElementById('deadlineDate').value = tmr.getFullYear() + '-' + pad(tmr.getMonth()+1) + '-' + pad(tmr.getDate());
+    document.getElementById('deadlineTime').value = '23:59';
+  } catch(e) {}
+}
+setDefaultDeadline();
 
-  var filterStatus = 'all';
-  var filterCategory = 'all';
-  var editingId = null;
+function getDeadlineValue() {
+  var d = document.getElementById('deadlineDate').value;
+  var t = document.getElementById('deadlineTime').value || '23:59';
+  if (!d) return null;
+  return d + 'T' + t;
+}
 
-  var todoInput = document.getElementById('todoInput');
-  var deadlineDate = document.getElementById('deadlineDate');
-  var deadlineTime = document.getElementById('deadlineTime');
-  var categorySelect = document.getElementById('categorySelect');
-  var addBtn = document.getElementById('addBtn');
-  var todoList = document.getElementById('todoList');
-  var totalCount = document.getElementById('totalCount');
-  var activeCount = document.getElementById('activeCount');
-  var overdueCount = document.getElementById('overdueCount');
-  var progressText = document.getElementById('progressText');
-  var progressFill = document.getElementById('progressFill');
-  var clearDoneBtn = document.getElementById('clearDoneBtn');
+function setQuickTime(offset) {
+  var target = new Date();
+  target.setDate(target.getDate() + offset);
+  document.getElementById('deadlineDate').value = target.getFullYear() + '-' + pad(target.getMonth()+1) + '-' + pad(target.getDate());
+  document.getElementById('deadlineTime').value = '23:59';
+}
 
-  function pad(n) {
-    return n < 10 ? '0' + n : '' + n;
-  }
+function getTimeStatus(deadline) {
+  if (!deadline) return 'normal';
+  var now = new Date();
+  var dl = new Date(deadline);
+  if (isNaN(dl.getTime())) return 'normal';
+  var todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  var dlDay = new Date(dl.getFullYear(), dl.getMonth(), dl.getDate());
+  if (dl < now && dlDay < todayStart) return 'overdue';
+  if (dlDay.getTime() === todayStart.getTime()) return 'today';
+  return 'normal';
+}
 
-  // 设置默认截止日期为明天
-  function setDefaultDeadline() {
-    try {
-      var tomorrow = new Date(Date.now() + 86400000);
-      deadlineDate.value = tomorrow.getFullYear() + '-' + pad(tomorrow.getMonth()+1) + '-' + pad(tomorrow.getDate());
-      deadlineTime.value = '23:59';
-    } catch(e) {}
-  }
-  setDefaultDeadline();
+function formatTime(deadline) {
+  if (!deadline) return '';
+  var dl = new Date(deadline);
+  if (isNaN(dl.getTime())) return '';
+  var now = new Date();
+  var dateStr = (dl.getMonth()+1) + '/' + dl.getDate() + ' ' + pad(dl.getHours()) + ':' + pad(dl.getMinutes());
+  var status = getTimeStatus(deadline);
+  if (status === 'overdue') return '⏰ 已过期 ' + dateStr;
+  var diff = dl - now;
+  if (diff < 0) return '⏰ 已过期 ' + dateStr;
+  if (diff < 3600000) return '⏳ ' + Math.ceil(diff/60000) + '分钟后';
+  if (diff < 86400000) return '⏳ ' + Math.ceil(diff/3600000) + '小时后';
+  return '📅 ' + dateStr;
+}
 
-  function save() {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
-    } catch(e) {}
-  }
-
-  function showToast(msg) {
-    var toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.textContent = msg;
-    document.body.appendChild(toast);
-    setTimeout(function() { toast.remove(); }, 2000);
-  }
-
-  function escapeHtml(str) {
-    var div = document.createElement('div');
-    div.textContent = str;
-    return div.innerHTML;
-  }
-
-  function getDeadlineValue() {
-    var d = deadlineDate.value;
-    var t = deadlineTime.value || '23:59';
-    if (!d) return null;
-    return d + 'T' + t;
-  }
-
-  function getTimeStatus(deadline) {
-    if (!deadline) return 'normal';
-    var now = new Date();
-    var dl = new Date(deadline);
-    if (isNaN(dl.getTime())) return 'normal';
-    var todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    var dlDay = new Date(dl.getFullYear(), dl.getMonth(), dl.getDate());
-    if (dl < now && dlDay < todayStart) return 'overdue';
-    if (dlDay.getTime() === todayStart.getTime()) return 'today';
-    return 'normal';
-  }
-
-  function formatTime(deadline) {
-    if (!deadline) return '';
-    var dl = new Date(deadline);
-    if (isNaN(dl.getTime())) return '';
-    var now = new Date();
-    var dateStr = (dl.getMonth()+1) + '/' + dl.getDate() + ' ' + pad(dl.getHours()) + ':' + pad(dl.getMinutes());
-    var status = getTimeStatus(deadline);
-    if (status === 'overdue') return '⏰ 已过期 ' + dateStr;
-    var diff = dl - now;
-    if (diff < 0) return '⏰ 已过期 ' + dateStr;
-    if (diff < 3600000) return '⏳ ' + Math.ceil(diff/60000) + '分钟后';
-    if (diff < 86400000) return '⏳ ' + Math.ceil(diff/3600000) + '小时后';
-    return '📅 ' + dateStr;
-  }
-
-  function addTodo() {
-    var text = todoInput.value.trim();
-    if (!text) {
-      todoInput.focus();
-      return;
-    }
-    var todo = {
-      id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
-      text: text,
-      completed: false,
-      createdAt: new Date().toISOString(),
-      deadline: getDeadlineValue(),
-      category: categorySelect.value || '其他'
-    };
-    todos.push(todo);
-    save();
-    render();
-    todoInput.value = '';
-    categorySelect.value = '其他';
-    setDefaultDeadline();
-    todoInput.focus();
-    showToast('已添加待办');
-  }
-
-  function toggleTodo(id) {
-    for (var i = 0; i < todos.length; i++) {
-      if (todos[i].id === id) {
-        todos[i].completed = !todos[i].completed;
-        break;
-      }
-    }
-    save();
-    render();
-  }
-
-  function confirmDelete(id) {
-    var todo = null;
-    for (var i = 0; i < todos.length; i++) {
-      if (todos[i].id === id) { todo = todos[i]; break; }
-    }
-    if (!todo) return;
-    var overlay = document.createElement('div');
-    overlay.className = 'confirm-overlay';
-    overlay.innerHTML = '<div class="confirm-box">' +
-      '<div class="confirm-text">确定要删除吗？</div>' +
-      '<div class="confirm-sub">"' + escapeHtml(todo.text) + '"</div>' +
-      '<div class="confirm-btns">' +
-      '<button class="confirm-yes">删除</button>' +
-      '<button class="confirm-no">取消</button>' +
-      '</div></div>';
-    document.body.appendChild(overlay);
-    overlay.querySelector('.confirm-yes').onclick = function() {
-      var newTodos = [];
-      for (var j = 0; j < todos.length; j++) {
-        if (todos[j].id !== id) newTodos.push(todos[j]);
-      }
-      todos = newTodos;
-      save();
-      render();
-      overlay.remove();
-      showToast('已删除');
-    };
-    overlay.querySelector('.confirm-no').onclick = function() { overlay.remove(); };
-    overlay.onclick = function(e) { if (e.target === overlay) overlay.remove(); };
-  }
-
-  function startEdit(id) {
-    editingId = id;
-    render();
-  }
-
-  function saveEdit(id) {
-    var todo = null;
-    for (var i = 0; i < todos.length; i++) {
-      if (todos[i].id === id) { todo = todos[i]; break; }
-    }
-    if (!todo) return;
-    var textInput = document.querySelector('.edit-input');
-    var editDate = document.querySelector('.edit-row .edit-date');
-    var editTimeEl = document.querySelector('.edit-row .edit-time');
-    var catSelect = document.querySelector('.edit-row .category-select');
-    var newText = textInput.value.trim();
-    if (!newText) { textInput.focus(); return; }
-    todo.text = newText;
-    var dl = editDate.value;
-    var tm = editTimeEl.value || '23:59';
-    todo.deadline = dl ? dl + 'T' + tm : null;
-    todo.category = catSelect.value || '其他';
-    editingId = null;
-    save();
-    render();
-    showToast('已更新');
-  }
-
-  function cancelEdit() {
-    editingId = null;
-    render();
-  }
-
-  function clearDone() {
-    var doneCount = 0;
-    for (var i = 0; i < todos.length; i++) {
-      if (todos[i].completed) doneCount++;
-    }
-    if (doneCount === 0) { showToast('没有已完成的待办'); return; }
-    var overlay = document.createElement('div');
-    overlay.className = 'confirm-overlay';
-    overlay.innerHTML = '<div class="confirm-box">' +
-      '<div class="confirm-text">清除 ' + doneCount + ' 条已完成？</div>' +
-      '<div class="confirm-sub">此操作不可撤销</div>' +
-      '<div class="confirm-btns">' +
-      '<button class="confirm-yes">清除</button>' +
-      '<button class="confirm-no">取消</button>' +
-      '</div></div>';
-    document.body.appendChild(overlay);
-    overlay.querySelector('.confirm-yes').onclick = function() {
-      var newTodos = [];
-      for (var j = 0; j < todos.length; j++) {
-        if (!todos[j].completed) newTodos.push(todos[j]);
-      }
-      todos = newTodos;
-      save();
-      render();
-      overlay.remove();
-      showToast('已清除');
-    };
-    overlay.querySelector('.confirm-no').onclick = function() { overlay.remove(); };
-    overlay.onclick = function(e) { if (e.target === overlay) overlay.remove(); };
-  }
-
-  function sortTodos(list) {
-    return list.sort(function(a, b) {
-      if (a.completed !== b.completed) return a.completed ? 1 : -1;
-      if (a.completed) return new Date(b.createdAt) - new Date(a.createdAt);
-      var da = a.deadline ? new Date(a.deadline).getTime() : Infinity;
-      var db = b.deadline ? new Date(b.deadline).getTime() : Infinity;
-      return da - db;
-    });
-  }
-
-  function render() {
-    var filtered = todos;
-    if (filterStatus === 'active') {
-      var f = [];
-      for (var i = 0; i < filtered.length; i++) { if (!filtered[i].completed) f.push(filtered[i]); }
-      filtered = f;
-    } else if (filterStatus === 'completed') {
-      var f = [];
-      for (var i = 0; i < filtered.length; i++) { if (filtered[i].completed) f.push(filtered[i]); }
-      filtered = f;
-    } else if (filterStatus === 'overdue') {
-      var f = [];
-      for (var i = 0; i < filtered.length; i++) {
-        if (!filtered[i].completed && getTimeStatus(filtered[i].deadline) === 'overdue') f.push(filtered[i]);
-      }
-      filtered = f;
-    }
-    if (filterCategory !== 'all') {
-      var f = [];
-      for (var i = 0; i < filtered.length; i++) { if (filtered[i].category === filterCategory) f.push(filtered[i]); }
-      filtered = f;
-    }
-
-    var sorted = sortTodos(filtered.slice());
-
-    var total = todos.length;
-    var done = 0;
-    var overdue = 0;
-    for (var i = 0; i < todos.length; i++) {
-      if (todos[i].completed) done++;
-      else if (getTimeStatus(todos[i].deadline) === 'overdue') overdue++;
-    }
-    var active = total - done;
-    totalCount.textContent = total;
-    doneCount.textContent = done;
-    activeCount.textContent = active;
-    overdueCount.textContent = overdue;
-    progressText.textContent = done + ' / ' + total;
-    progressFill.style.width = total > 0 ? (done / total * 100) + '%' : '0%';
-
-    if (sorted.length === 0) {
-      var emptyMsg = filterCategory !== 'all'
-        ? '没有"' + filterCategory + '"类的待办'
-        : filterStatus === 'all' ? '还没有待办事项，写下你的第一件事吧' : '这里空空的~';
-      todoList.innerHTML = '<div class="empty-state">' +
-        '<div class="empty-icon">📝</div>' +
-        '<div class="empty-text">' + emptyMsg + '</div></div>';
-      return;
-    }
-
-    var html = '';
-    for (var i = 0; i < sorted.length; i++) {
-      var todo = sorted[i];
-      if (editingId === todo.id) {
-        var dVal = todo.deadline ? todo.deadline.split('T')[0] : '';
-        var tVal = todo.deadline && todo.deadline.split('T')[1] ? todo.deadline.split('T')[1].slice(0,5) : '23:59';
-        var opts = '';
-        for (var c in CATEGORIES) {
-          opts += '<option value="' + c + '"' + (c === todo.category ? ' selected' : '') + '>' + CATEGORIES[c].emoji + ' ' + c + '</option>';
-        }
-        html += '<div class="todo-item editing">' +
-          '<div class="todo-content">' +
-          '<input class="edit-input" value="' + escapeHtml(todo.text) + '" maxlength="200">' +
-          '<div class="edit-row">' +
-          '<input type="date" class="time-input edit-date" value="' + dVal + '">' +
-          '<input type="time" class="time-input edit-time" value="' + tVal + '" style="min-width:100px;flex:0.6;">' +
-          '<select class="category-select">' + opts + '</select>' +
-          '<button class="edit-save-btn" onclick="window._saveEdit(\'' + todo.id + '\')">保存</button>' +
-          '<button class="edit-cancel-btn" onclick="window._cancelEdit()">取消</button>' +
-          '</div></div></div>';
-        continue;
-      }
-
-      var timeStatus = getTimeStatus(todo.deadline);
-      var itemClass = 'todo-item';
-      if (todo.completed) itemClass += ' completed';
-      else if (timeStatus === 'overdue') itemClass += ' overdue';
-      else if (timeStatus === 'today') itemClass += ' due-today';
-
-      var cat = CATEGORIES[todo.category] || CATEGORIES['其他'];
-      var timeStr = formatTime(todo.deadline);
-      var timeClass = 'todo-time';
-      if (!todo.completed && timeStatus === 'overdue') timeClass += ' overdue-time';
-      else if (!todo.completed && timeStatus === 'today') timeClass += ' today-time';
-
-      html += '<div class="' + itemClass + '">' +
-        '<div class="todo-check' + (todo.completed ? ' checked' : '') + '" onclick="window._toggleTodo(\'' + todo.id + '\')"></div>' +
-        '<div class="todo-content">' +
-        '<div class="todo-text">' + escapeHtml(todo.text) + '</div>' +
-        '<div class="todo-meta">' +
-        (timeStr ? '<span class="' + timeClass + '">' + timeStr + '</span>' : '') +
-        '<span class="category-tag ' + cat.css + '">' + cat.emoji + ' ' + todo.category + '</span>' +
-        '</div></div>' +
-        '<div class="todo-actions">' +
-        '<button class="todo-action-btn edit-btn" onclick="window._startEdit(\'' + todo.id + '\')" title="编辑">✎</button>' +
-        '<button class="todo-action-btn del-btn" onclick="window._confirmDelete(\'' + todo.id + '\')" title="删除">✕</button>' +
-        '</div></div>';
-    }
-    todoList.innerHTML = html;
-
-    if (editingId) {
-      var editInput = document.querySelector('.edit-input');
-      if (editInput) { editInput.focus(); }
-    }
-  }
-
-  // 暴露函数给 onclick
-  window._toggleTodo = toggleTodo;
-  window._confirmDelete = confirmDelete;
-  window._startEdit = startEdit;
-  window._saveEdit = saveEdit;
-  window._cancelEdit = cancelEdit;
-
-  // 快捷时间按钮
-  var quickBtns = document.querySelectorAll('.quick-time-btn');
-  for (var i = 0; i < quickBtns.length; i++) {
-    quickBtns[i].addEventListener('click', function() {
-      var offset = parseInt(this.getAttribute('data-offset'));
-      var target = new Date();
-      target.setDate(target.getDate() + offset);
-      deadlineDate.value = target.getFullYear() + '-' + pad(target.getMonth()+1) + '-' + pad(target.getDate());
-      deadlineTime.value = '23:59';
-    });
-  }
-
-  // 添加按钮
-  addBtn.addEventListener('click', addTodo);
-
-  // 回车添加
-  todoInput.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') addTodo();
-  });
-
-  // 状态筛选
-  var statusBtns = document.querySelectorAll('.filter-btn[data-type="status"]');
-  for (var i = 0; i < statusBtns.length; i++) {
-    statusBtns[i].addEventListener('click', function() {
-      var active = document.querySelector('.filter-btn[data-type="status"].active');
-      if (active) active.classList.remove('active');
-      this.classList.add('active');
-      filterStatus = this.getAttribute('data-filter');
-      render();
-    });
-  }
-
-  // 分类筛选
-  var catBtns = document.querySelectorAll('.filter-btn[data-type="category"]');
-  for (var i = 0; i < catBtns.length; i++) {
-    catBtns[i].addEventListener('click', function() {
-      var active = document.querySelector('.filter-btn[data-type="category"].active');
-      if (active) active.classList.remove('active');
-      this.classList.add('active');
-      filterCategory = this.getAttribute('data-filter');
-      render();
-    });
-  }
-
-  // 清除已完成
-  clearDoneBtn.addEventListener('click', clearDone);
-
-  // 初始渲染
+// 添加待办
+function addTodo() {
+  var input = document.getElementById('todoInput');
+  var text = input.value.trim();
+  if (!text) { input.focus(); return; }
+  var todo = {
+    id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+    text: text,
+    completed: false,
+    createdAt: new Date().toISOString(),
+    deadline: getDeadlineValue(),
+    category: document.getElementById('categorySelect').value || '其他'
+  };
+  todos.push(todo);
+  save();
   render();
-  setInterval(render, 60000);
+  input.value = '';
+  document.getElementById('categorySelect').value = '其他';
+  setDefaultDeadline();
+  input.focus();
+  showToast('已添加待办');
+}
 
-  // 注册 Service Worker
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js').catch(function(){});
+// 回车添加
+document.getElementById('todoInput').onkeydown = function(e) {
+  if (e.key === 'Enter') addTodo();
+};
+
+// 切换完成
+function toggleTodo(id) {
+  for (var i = 0; i < todos.length; i++) {
+    if (todos[i].id === id) { todos[i].completed = !todos[i].completed; break; }
   }
-})();
+  save();
+  render();
+}
+
+// 删除确认
+function confirmDelete(id) {
+  var todo = null;
+  for (var i = 0; i < todos.length; i++) {
+    if (todos[i].id === id) { todo = todos[i]; break; }
+  }
+  if (!todo) return;
+  var overlay = document.createElement('div');
+  overlay.className = 'confirm-overlay';
+  overlay.innerHTML = '<div class="confirm-box">' +
+    '<div class="confirm-text">确定要删除吗？</div>' +
+    '<div class="confirm-sub">"' + escapeHtml(todo.text) + '"</div>' +
+    '<div class="confirm-btns">' +
+    '<button class="confirm-yes" onclick="doDelete(\'' + id + '\',this)">删除</button>' +
+    '<button class="confirm-no" onclick="this.closest(\'.confirm-overlay\').remove()">取消</button>' +
+    '</div></div>';
+  document.body.appendChild(overlay);
+  overlay.onclick = function(e) { if (e.target === overlay) overlay.remove(); };
+}
+
+function doDelete(id, btn) {
+  var newTodos = [];
+  for (var j = 0; j < todos.length; j++) {
+    if (todos[j].id !== id) newTodos.push(todos[j]);
+  }
+  todos = newTodos;
+  save();
+  render();
+  btn.closest('.confirm-overlay').remove();
+  showToast('已删除');
+}
+
+// 编辑
+function startEdit(id) {
+  editingId = id;
+  render();
+}
+
+function saveEdit(id) {
+  var todo = null;
+  for (var i = 0; i < todos.length; i++) {
+    if (todos[i].id === id) { todo = todos[i]; break; }
+  }
+  if (!todo) return;
+  var textInput = document.querySelector('.edit-input');
+  var editDate = document.querySelector('.edit-date');
+  var editTime = document.querySelector('.edit-time');
+  var catSelect = document.querySelector('.edit-row .category-select');
+  var newText = textInput.value.trim();
+  if (!newText) { textInput.focus(); return; }
+  todo.text = newText;
+  var dl = editDate.value;
+  var tm = editTime.value || '23:59';
+  todo.deadline = dl ? dl + 'T' + tm : null;
+  todo.category = catSelect.value || '其他';
+  editingId = null;
+  save();
+  render();
+  showToast('已更新');
+}
+
+function cancelEdit() {
+  editingId = null;
+  render();
+}
+
+// 筛选
+function setStatusFilter(val, btn) {
+  filterStatus = val;
+  var btns = document.getElementById('statusFilters').getElementsByClassName('filter-btn');
+  for (var i = 0; i < btns.length; i++) btns[i].className = 'filter-btn';
+  btn.className = 'filter-btn active';
+  render();
+}
+
+function setCatFilter(val, btn) {
+  filterCategory = val;
+  var btns = document.getElementById('categoryFilters').getElementsByClassName('filter-btn');
+  for (var i = 0; i < btns.length; i++) btns[i].className = 'filter-btn';
+  btn.className = 'filter-btn active';
+  render();
+}
+
+// 清除已完成
+function clearDone() {
+  var doneCount = 0;
+  for (var i = 0; i < todos.length; i++) { if (todos[i].completed) doneCount++; }
+  if (doneCount === 0) { showToast('没有已完成的待办'); return; }
+  var overlay = document.createElement('div');
+  overlay.className = 'confirm-overlay';
+  overlay.innerHTML = '<div class="confirm-box">' +
+    '<div class="confirm-text">清除 ' + doneCount + ' 条已完成？</div>' +
+    '<div class="confirm-sub">此操作不可撤销</div>' +
+    '<div class="confirm-btns">' +
+    '<button class="confirm-yes" onclick="doClearDone(this)">清除</button>' +
+    '<button class="confirm-no" onclick="this.closest(\'.confirm-overlay\').remove()">取消</button>' +
+    '</div></div>';
+  document.body.appendChild(overlay);
+  overlay.onclick = function(e) { if (e.target === overlay) overlay.remove(); };
+}
+
+function doClearDone(btn) {
+  var newTodos = [];
+  for (var j = 0; j < todos.length; j++) {
+    if (!todos[j].completed) newTodos.push(todos[j]);
+  }
+  todos = newTodos;
+  save();
+  render();
+  btn.closest('.confirm-overlay').remove();
+  showToast('已清除');
+}
+
+// 排序
+function sortTodos(list) {
+  return list.sort(function(a, b) {
+    if (a.completed !== b.completed) return a.completed ? 1 : -1;
+    if (a.completed) return new Date(b.createdAt) - new Date(a.createdAt);
+    var da = a.deadline ? new Date(a.deadline).getTime() : Infinity;
+    var db = b.deadline ? new Date(b.deadline).getTime() : Infinity;
+    return da - db;
+  });
+}
+
+// 渲染
+function render() {
+  var filtered = [];
+  for (var i = 0; i < todos.length; i++) {
+    var t = todos[i];
+    if (filterStatus === 'active' && t.completed) continue;
+    if (filterStatus === 'completed' && !t.completed) continue;
+    if (filterStatus === 'overdue' && (t.completed || getTimeStatus(t.deadline) !== 'overdue')) continue;
+    if (filterCategory !== 'all' && t.category !== filterCategory) continue;
+    filtered.push(t);
+  }
+
+  var sorted = sortTodos(filtered);
+
+  // 统计
+  var total = todos.length, done = 0, overdue = 0;
+  for (var i = 0; i < todos.length; i++) {
+    if (todos[i].completed) done++;
+    else if (getTimeStatus(todos[i].deadline) === 'overdue') overdue++;
+  }
+  document.getElementById('totalCount').textContent = total;
+  document.getElementById('activeCount').textContent = total - done;
+  document.getElementById('overdueCount').textContent = overdue;
+  document.getElementById('progressText').textContent = done + ' / ' + total;
+  document.getElementById('progressFill').style.width = total > 0 ? (done / total * 100) + '%' : '0%';
+
+  if (sorted.length === 0) {
+    var msg = filterCategory !== 'all' ? '没有"' + filterCategory + '"类的待办' :
+      filterStatus === 'all' ? '还没有待办事项，写下你的第一件事吧' : '这里空空的~';
+    document.getElementById('todoList').innerHTML = '<div class="empty-state"><div class="empty-icon">📝</div><div class="empty-text">' + msg + '</div></div>';
+    return;
+  }
+
+  var html = '';
+  for (var i = 0; i < sorted.length; i++) {
+    var todo = sorted[i];
+
+    // 编辑模式
+    if (editingId === todo.id) {
+      var dVal = todo.deadline ? todo.deadline.split('T')[0] : '';
+      var tVal = todo.deadline && todo.deadline.split('T')[1] ? todo.deadline.split('T')[1].slice(0,5) : '23:59';
+      var opts = '';
+      for (var c in CATEGORIES) {
+        opts += '<option value="' + c + '"' + (c === todo.category ? ' selected' : '') + '>' + CATEGORIES[c].emoji + ' ' + c + '</option>';
+      }
+      html += '<div class="todo-item">' +
+        '<div class="todo-content">' +
+        '<input class="edit-input" value="' + escapeHtml(todo.text) + '" maxlength="200">' +
+        '<div class="edit-row" style="display:flex;gap:8px;flex-wrap:wrap;">' +
+        '<input type="date" class="time-input edit-date" value="' + dVal + '">' +
+        '<input type="time" class="time-input edit-time" value="' + tVal + '" style="min-width:100px;flex:0.6;">' +
+        '<select class="category-select">' + opts + '</select>' +
+        '<button class="add-btn" style="padding:6px 14px;font-size:0.85rem;" onclick="saveEdit(\'' + todo.id + '\')">保存</button>' +
+        '<button style="border:1.5px solid #e8ddd0;background:#fffdf7;color:#9a8a7a;border-radius:10px;padding:6px 14px;font-size:0.85rem;cursor:pointer;" onclick="cancelEdit()">取消</button>' +
+        '</div></div></div>';
+      continue;
+    }
+
+    var timeStatus = getTimeStatus(todo.deadline);
+    var cls = 'todo-item';
+    if (todo.completed) cls += ' completed';
+    else if (timeStatus === 'overdue') cls += ' overdue';
+    else if (timeStatus === 'today') cls += ' due-today';
+
+    var cat = CATEGORIES[todo.category] || CATEGORIES['其他'];
+    var timeStr = formatTime(todo.deadline);
+    var timeClass = 'todo-time';
+    if (!todo.completed && timeStatus === 'overdue') timeClass += ' overdue-time';
+    else if (!todo.completed && timeStatus === 'today') timeClass += ' today-time';
+
+    html += '<div class="' + cls + '">' +
+      '<div class="todo-check' + (todo.completed ? ' checked' : '') + '" onclick="toggleTodo(\'' + todo.id + '\')"></div>' +
+      '<div class="todo-content">' +
+      '<div class="todo-text">' + escapeHtml(todo.text) + '</div>' +
+      '<div class="todo-meta">' +
+      (timeStr ? '<span class="' + timeClass + '">' + timeStr + '</span>' : '') +
+      '<span class="category-tag ' + cat.css + '">' + cat.emoji + ' ' + todo.category + '</span>' +
+      '</div></div>' +
+      '<div class="todo-actions">' +
+      '<button class="todo-action-btn" onclick="startEdit(\'' + todo.id + '\')" title="编辑">✎</button>' +
+      '<button class="todo-action-btn" onclick="confirmDelete(\'' + todo.id + '\')" title="删除">✕</button>' +
+      '</div></div>';
+  }
+  document.getElementById('todoList').innerHTML = html;
+}
+
+// 初始渲染
+render();
+setInterval(render, 60000);
+
+// Service Worker
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js').catch(function(){});
+}
 </script>
 </body>
 </html>
