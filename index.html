@@ -18,7 +18,8 @@ body {
   background: #fdf6ec;
   color: #5a4a3a;
   min-height: 100vh;
-  padding: 20px;
+  padding: 16px;
+  padding-bottom: 180px;
   background-image:
     radial-gradient(circle at 20% 50%, rgba(244,199,195,0.15) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, rgba(195,217,244,0.15) 0%, transparent 50%),
@@ -26,71 +27,62 @@ body {
 }
 .container { max-width: 600px; margin: 0 auto; }
 
-.title { text-align: center; font-size: 2rem; margin-bottom: 6px; letter-spacing: 2px; }
-.subtitle { text-align: center; font-size: 0.95rem; color: #9a8a7a; margin-bottom: 24px; }
+.header { text-align: center; margin-bottom: 16px; }
+.header-title { font-size: 1.5rem; letter-spacing: 2px; }
+.header-sub { font-size: 0.85rem; color: #9a8a7a; margin-top: 2px; }
 
-.progress-bar-wrap {
-  background: #fffdf7; border: 1.5px dashed #e8ddd0; border-radius: 14px;
-  padding: 12px 18px; margin-bottom: 16px;
+.stats-row {
+  display: flex; justify-content: center; gap: 12px; margin-bottom: 12px;
 }
-.progress-label { display: flex; justify-content: space-between; font-size: 0.85rem; color: #9a8a7a; margin-bottom: 8px; }
-.progress-track { height: 10px; background: #fdf6ec; border-radius: 6px; overflow: hidden; border: 1px solid #e8ddd0; }
-.progress-fill { height: 100%; background: linear-gradient(90deg, #c7e6c9, #c3d9f4); border-radius: 6px; transition: width 0.5s ease; }
+.stat-pill {
+  background: #fffdf7; border: 1px dashed #e8ddd0; border-radius: 20px;
+  padding: 4px 14px; font-size: 0.8rem; color: #9a8a7a;
+}
+.stat-pill .n { color: #5a4a3a; font-weight: bold; margin-right: 2px; }
 
-.stats { display: flex; justify-content: center; gap: 16px; margin-bottom: 20px; }
-.stat-item { background: #fffdf7; border: 1.5px dashed #e8ddd0; border-radius: 14px; padding: 8px 16px; font-size: 0.85rem; color: #9a8a7a; text-align: center; }
-.stat-num { font-size: 1.2rem; color: #5a4a3a; margin-right: 3px; }
-
-.add-section { background: #fffdf7; border: 1.5px dashed #e8ddd0; border-radius: 18px; padding: 18px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(90,74,58,0.06); }
-.add-row { display: flex; gap: 10px; margin-bottom: 12px; }
-.add-input { flex: 1; border: 1.5px solid #e8ddd0; border-radius: 12px; padding: 10px 14px; font-size: 1rem; background: #fdf6ec; color: #5a4a3a; outline: none; }
-.add-input:focus { border-color: #e8a0a0; }
-.add-input::placeholder { color: #9a8a7a; opacity: 0.6; }
-
-.add-row2 { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-.time-input { border: 1.5px solid #e8ddd0; border-radius: 12px; padding: 8px 12px; font-size: 0.9rem; background: #fdf6ec; color: #5a4a3a; outline: none; flex: 1; min-width: 120px; }
-.time-input:focus { border-color: #e8a0a0; }
-
-.category-select { border: 1.5px solid #e8ddd0; border-radius: 12px; padding: 8px 12px; font-size: 0.9rem; background: #fdf6ec; color: #5a4a3a; outline: none; min-width: 110px; }
-.category-select:focus { border-color: #e8a0a0; }
-
-.quick-times { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
-.quick-time-btn { border: 1.5px dashed #e8ddd0; background: #fffdf7; color: #9a8a7a; border-radius: 16px; padding: 4px 12px; font-size: 0.8rem; cursor: pointer; }
-.quick-time-btn:active { background: #f4c7c3; color: #5a4a3a; }
-
-.add-btn { border: none; background: #f4c7c3; color: #5a4a3a; border-radius: 12px; padding: 8px 20px; font-size: 1rem; cursor: pointer; white-space: nowrap; }
-.add-btn:active { background: #e8a0a0; }
-
-.filter-section { margin-bottom: 16px; }
-.filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
-.filter-label { font-size: 0.8rem; color: #9a8a7a; margin-bottom: 4px; display: block; }
-.filter-btn { border: 1.5px solid #e8ddd0; background: #fffdf7; color: #9a8a7a; border-radius: 20px; padding: 5px 14px; font-size: 0.82rem; cursor: pointer; }
+.filter-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; justify-content: center; }
+.filter-btn {
+  border: 1px solid #e8ddd0; background: #fffdf7; color: #9a8a7a;
+  border-radius: 16px; padding: 3px 12px; font-size: 0.78rem; cursor: pointer;
+}
 .filter-btn.active { background: #f4c7c3; color: #5a4a3a; border-color: #f4c7c3; }
 
-.clear-done-btn { border: 1.5px dashed #e8ddd0; background: none; color: #9a8a7a; border-radius: 12px; padding: 4px 12px; font-size: 0.78rem; cursor: pointer; margin-left: auto; }
-.clear-done-btn:active { border-color: #e08080; color: #e08080; }
+.progress-mini {
+  height: 4px; background: #e8ddd0; border-radius: 3px; margin-bottom: 16px; overflow: hidden;
+}
+.progress-mini-fill {
+  height: 100%; background: linear-gradient(90deg, #c7e6c9, #c3d9f4); border-radius: 3px; transition: width 0.5s;
+}
 
-.todo-list { display: flex; flex-direction: column; gap: 10px; }
+.todo-list { display: flex; flex-direction: column; gap: 8px; }
 
-.todo-item { background: #fffdf7; border: 1.5px dashed #e8ddd0; border-radius: 16px; padding: 14px 16px; display: flex; align-items: flex-start; gap: 12px; animation: slideIn 0.3s ease; }
-@keyframes slideIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-.todo-item.completed { opacity: 0.55; }
+.todo-item {
+  background: #fffdf7; border: 1.5px dashed #e8ddd0; border-radius: 14px;
+  padding: 12px 14px; display: flex; align-items: flex-start; gap: 10px;
+  animation: slideIn 0.3s ease;
+}
+@keyframes slideIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+.todo-item.completed { opacity: 0.5; }
 .todo-item.completed .todo-text { text-decoration: line-through; color: #9a8a7a; }
-.todo-item.overdue { border-color: #e08080; background: linear-gradient(135deg, #fffdf7 0%, rgba(244,160,160,0.12) 100%); }
-.todo-item.due-today { border-color: #e0cc80; background: linear-gradient(135deg, #fffdf7 0%, rgba(245,230,163,0.15) 100%); }
+.todo-item.overdue { border-color: #e08080; background: linear-gradient(135deg, #fffdf7 0%, rgba(244,160,160,0.1) 100%); }
+.todo-item.due-today { border-color: #e0cc80; background: linear-gradient(135deg, #fffdf7 0%, rgba(245,230,163,0.12) 100%); }
 
-.todo-check { width: 22px; height: 22px; border: 2px solid #e8ddd0; border-radius: 50%; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+.todo-check {
+  width: 20px; height: 20px; border: 2px solid #e8ddd0; border-radius: 50%;
+  cursor: pointer; flex-shrink: 0; display: flex; align-items: center;
+  justify-content: center; margin-top: 1px;
+}
 .todo-check.checked { background: #c7e6c9; border-color: #a0d0a4; }
-.todo-check.checked::after { content: '✓'; font-size: 14px; color: #5a4a3a; }
+.todo-check.checked::after { content: '✓'; font-size: 13px; color: #5a4a3a; }
 
 .todo-content { flex: 1; min-width: 0; }
-.todo-text { font-size: 1rem; line-height: 1.5; word-break: break-all; }
-.todo-meta { display: flex; align-items: center; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
-.todo-time { font-size: 0.8rem; color: #9a8a7a; }
+.todo-text { font-size: 0.95rem; line-height: 1.4; word-break: break-all; }
+.todo-meta { display: flex; align-items: center; gap: 6px; margin-top: 4px; flex-wrap: wrap; }
+.todo-time { font-size: 0.75rem; color: #9a8a7a; }
 .todo-time.overdue-time { color: #e08080; font-weight: bold; }
 .todo-time.today-time { color: #e0cc80; font-weight: bold; }
 
-.category-tag { font-size: 0.75rem; padding: 2px 10px; border-radius: 12px; display: inline-block; }
+.category-tag { font-size: 0.7rem; padding: 1px 8px; border-radius: 10px; display: inline-block; }
 .cat-作业 { background: #c3d9f4; color: #4a6a8a; }
 .cat-会议 { background: #d5c3f4; color: #6a5a8a; }
 .cat-游戏 { background: #f5d0a9; color: #8a6a4a; }
@@ -100,67 +92,130 @@ body {
 .cat-实验 { background: #b8e0f0; color: #3a6a7a; }
 .cat-其他 { background: #f4c7c3; color: #8a5a5a; }
 
-.todo-actions { display: flex; gap: 4px; flex-shrink: 0; }
-.todo-action-btn { border: none; background: none; color: #9a8a7a; cursor: pointer; font-size: 0.95rem; padding: 4px 6px; border-radius: 8px; opacity: 0.35; }
+.todo-actions { display: flex; gap: 2px; flex-shrink: 0; }
+.todo-action-btn {
+  border: none; background: none; color: #9a8a7a; cursor: pointer;
+  font-size: 0.85rem; padding: 2px 4px; border-radius: 6px; opacity: 0.3;
+}
 .todo-action-btn:active { opacity: 1; }
 
-.confirm-overlay { position: fixed; inset: 0; background: rgba(90,74,58,0.2); display: flex; align-items: center; justify-content: center; z-index: 100; }
-.confirm-box { background: #fffdf7; border: 1.5px dashed #e8ddd0; border-radius: 18px; padding: 24px; max-width: 320px; width: 90%; text-align: center; box-shadow: 0 8px 30px rgba(90,74,58,0.15); }
-.confirm-text { font-size: 1.05rem; margin-bottom: 6px; }
-.confirm-sub { font-size: 0.85rem; color: #9a8a7a; margin-bottom: 18px; word-break: break-all; }
+.empty-state { text-align: center; padding: 30px 20px; color: #9a8a7a; }
+.empty-icon { font-size: 2rem; margin-bottom: 8px; }
+.empty-text { font-size: 0.9rem; }
+
+/* 底部添加栏 */
+.add-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: #fffdf7; border-top: 1.5px dashed #e8ddd0;
+  padding: 12px 16px; z-index: 50;
+  box-shadow: 0 -4px 20px rgba(90,74,58,0.08);
+}
+.add-bar-inner { max-width: 600px; margin: 0 auto; }
+.add-main { display: flex; gap: 8px; margin-bottom: 8px; }
+.add-input {
+  flex: 1; border: 1.5px solid #e8ddd0; border-radius: 10px;
+  padding: 8px 12px; font-size: 0.95rem; background: #fdf6ec; color: #5a4a3a; outline: none;
+}
+.add-input:focus { border-color: #e8a0a0; }
+.add-input::placeholder { color: #9a8a7a; opacity: 0.6; }
+.add-btn {
+  border: none; background: #f4c7c3; color: #5a4a3a; border-radius: 10px;
+  padding: 8px 16px; font-size: 0.95rem; cursor: pointer; white-space: nowrap;
+}
+.add-btn:active { background: #e8a0a0; }
+
+.add-extra { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.add-extra input[type="date"],
+.add-extra input[type="time"] {
+  border: 1px solid #e8ddd0; border-radius: 8px; padding: 4px 8px;
+  font-size: 0.8rem; background: #fdf6ec; color: #5a4a3a; outline: none;
+}
+.add-extra select {
+  border: 1px solid #e8ddd0; border-radius: 8px; padding: 4px 8px;
+  font-size: 0.8rem; background: #fdf6ec; color: #5a4a3a; outline: none;
+}
+.quick-btn {
+  border: 1px dashed #e8ddd0; background: #fffdf7; color: #9a8a7a;
+  border-radius: 12px; padding: 3px 10px; font-size: 0.75rem; cursor: pointer;
+}
+.quick-btn:active { background: #f4c7c3; color: #5a4a3a; }
+
+/* 弹窗 */
+.confirm-overlay {
+  position: fixed; inset: 0; background: rgba(90,74,58,0.2);
+  display: flex; align-items: center; justify-content: center; z-index: 100;
+}
+.confirm-box {
+  background: #fffdf7; border: 1.5px dashed #e8ddd0; border-radius: 16px;
+  padding: 20px; max-width: 300px; width: 85%; text-align: center;
+  box-shadow: 0 8px 30px rgba(90,74,58,0.15);
+}
+.confirm-text { font-size: 1rem; margin-bottom: 4px; }
+.confirm-sub { font-size: 0.8rem; color: #9a8a7a; margin-bottom: 14px; word-break: break-all; }
 .confirm-btns { display: flex; gap: 10px; justify-content: center; }
-.confirm-yes { border: none; background: #f4a0a0; color: #5a4a3a; border-radius: 12px; padding: 8px 22px; font-size: 0.95rem; cursor: pointer; }
-.confirm-no { border: 1.5px solid #e8ddd0; background: #fffdf7; color: #5a4a3a; border-radius: 12px; padding: 8px 22px; font-size: 0.95rem; cursor: pointer; }
+.confirm-yes { border: none; background: #f4a0a0; color: #5a4a3a; border-radius: 10px; padding: 7px 20px; font-size: 0.9rem; cursor: pointer; }
+.confirm-no { border: 1px solid #e8ddd0; background: #fffdf7; color: #5a4a3a; border-radius: 10px; padding: 7px 20px; font-size: 0.9rem; cursor: pointer; }
 
-.toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #5a4a3a; color: #fffdf7; padding: 10px 24px; border-radius: 20px; font-size: 0.9rem; z-index: 200; pointer-events: none; }
-
-.empty-state { text-align: center; padding: 40px 20px; color: #9a8a7a; }
-.empty-icon { font-size: 2.5rem; margin-bottom: 10px; }
-.empty-text { font-size: 1rem; }
+.toast {
+  position: fixed; bottom: 180px; left: 50%; transform: translateX(-50%);
+  background: #5a4a3a; color: #fffdf7; padding: 8px 20px; border-radius: 16px;
+  font-size: 0.85rem; z-index: 200; pointer-events: none;
+}
 
 @media (max-width: 480px) {
-  body { padding: 12px; }
-  .title { font-size: 1.6rem; }
-  .add-section { padding: 14px; }
-  .add-row2 { flex-direction: column; }
-  .time-input, .category-select { min-width: 100%; }
-  .todo-item { padding: 12px; }
-  .stats { gap: 10px; }
-  .stat-item { padding: 6px 12px; }
+  body { padding: 12px; padding-bottom: 170px; }
+  .header-title { font-size: 1.3rem; }
 }
 </style>
 </head>
 <body>
 
 <div class="container">
-  <div class="title">📒 我的手账待办</div>
-  <div class="subtitle">记录每一件重要的事</div>
-
-  <div class="progress-bar-wrap">
-    <div class="progress-label">
-      <span>完成进度</span>
-      <span id="progressText">0 / 0</span>
-    </div>
-    <div class="progress-track">
-      <div class="progress-fill" id="progressFill" style="width: 0%"></div>
-    </div>
+  <div class="header">
+    <div class="header-title">📒 我的手账待办</div>
+    <div class="header-sub">记录每一件重要的事</div>
   </div>
 
-  <div class="stats">
-    <div class="stat-item"><span class="stat-num" id="totalCount">0</span>全部</div>
-    <div class="stat-item"><span class="stat-num" id="activeCount">0</span>待完成</div>
-    <div class="stat-item"><span class="stat-num" id="overdueCount">0</span>已过期</div>
+  <div class="stats-row">
+    <span class="stat-pill"><span class="n" id="totalCount">0</span>全部</span>
+    <span class="stat-pill"><span class="n" id="activeCount">0</span>待完成</span>
+    <span class="stat-pill"><span class="n" id="overdueCount">0</span>已过期</span>
   </div>
 
-  <div class="add-section">
-    <div class="add-row">
+  <div class="filter-row" id="statusFilters">
+    <button class="filter-btn active" onclick="setStatusFilter('all',this)">全部</button>
+    <button class="filter-btn" onclick="setStatusFilter('active',this)">待完成</button>
+    <button class="filter-btn" onclick="setStatusFilter('completed',this)">已完成</button>
+    <button class="filter-btn" onclick="setStatusFilter('overdue',this)">已过期</button>
+  </div>
+  <div class="filter-row" id="categoryFilters">
+    <button class="filter-btn active" onclick="setCatFilter('all',this)">全部</button>
+    <button class="filter-btn" onclick="setCatFilter('作业',this)">📚</button>
+    <button class="filter-btn" onclick="setCatFilter('会议',this)">💼</button>
+    <button class="filter-btn" onclick="setCatFilter('游戏',this)">🎮</button>
+    <button class="filter-btn" onclick="setCatFilter('考试',this)">📝</button>
+    <button class="filter-btn" onclick="setCatFilter('运动',this)">⚽</button>
+    <button class="filter-btn" onclick="setCatFilter('学习',this)">📖</button>
+    <button class="filter-btn" onclick="setCatFilter('实验',this)">🔬</button>
+    <button class="filter-btn" onclick="setCatFilter('其他',this)">📎</button>
+  </div>
+
+  <div class="progress-mini"><div class="progress-mini-fill" id="progressFill" style="width:0%"></div></div>
+
+  <div class="todo-list" id="todoList"></div>
+</div>
+
+<!-- 底部添加栏 -->
+<div class="add-bar">
+  <div class="add-bar-inner">
+    <div class="add-main">
       <input type="text" class="add-input" id="todoInput" placeholder="写下你要做的事..." maxlength="200">
       <button class="add-btn" onclick="addTodo()">添加</button>
     </div>
-    <div class="add-row2">
-      <input type="date" class="time-input" id="deadlineDate">
-      <input type="time" class="time-input" id="deadlineTime" style="min-width:100px;flex:0.6;">
-      <select class="category-select" id="categorySelect">
+    <div class="add-extra">
+      <input type="date" id="deadlineDate">
+      <input type="time" id="deadlineTime" style="width:90px;">
+      <select id="categorySelect">
         <option value="其他">📌 分类</option>
         <option value="作业">📚 作业</option>
         <option value="会议">💼 会议</option>
@@ -170,41 +225,11 @@ body {
         <option value="学习">📖 学习</option>
         <option value="实验">🔬 实验</option>
       </select>
-    </div>
-    <div class="quick-times">
-      <button class="quick-time-btn" onclick="setQuickTime(0)">今天</button>
-      <button class="quick-time-btn" onclick="setQuickTime(1)">明天</button>
-      <button class="quick-time-btn" onclick="setQuickTime(2)">后天</button>
-      <button class="quick-time-btn" onclick="setQuickTime(7)">下周</button>
+      <button class="quick-btn" onclick="setQuickTime(0)">今天</button>
+      <button class="quick-btn" onclick="setQuickTime(1)">明天</button>
+      <button class="quick-btn" onclick="setQuickTime(7)">下周</button>
     </div>
   </div>
-
-  <div class="filter-section">
-    <span class="filter-label">按状态：</span>
-    <div class="filter-row" id="statusFilters">
-      <button class="filter-btn active" onclick="setStatusFilter('all',this)">全部</button>
-      <button class="filter-btn" onclick="setStatusFilter('active',this)">待完成</button>
-      <button class="filter-btn" onclick="setStatusFilter('completed',this)">已完成</button>
-      <button class="filter-btn" onclick="setStatusFilter('overdue',this)">已过期</button>
-    </div>
-    <span class="filter-label">按分类：</span>
-    <div class="filter-row" id="categoryFilters">
-      <button class="filter-btn active" onclick="setCatFilter('all',this)">全部</button>
-      <button class="filter-btn" onclick="setCatFilter('作业',this)">📚 作业</button>
-      <button class="filter-btn" onclick="setCatFilter('会议',this)">💼 会议</button>
-      <button class="filter-btn" onclick="setCatFilter('游戏',this)">🎮 游戏</button>
-      <button class="filter-btn" onclick="setCatFilter('考试',this)">📝 考试</button>
-      <button class="filter-btn" onclick="setCatFilter('运动',this)">⚽ 运动</button>
-      <button class="filter-btn" onclick="setCatFilter('学习',this)">📖 学习</button>
-      <button class="filter-btn" onclick="setCatFilter('实验',this)">🔬 实验</button>
-      <button class="filter-btn" onclick="setCatFilter('其他',this)">📎 其他</button>
-    </div>
-    <div style="display:flex;justify-content:flex-end;">
-      <button class="clear-done-btn" onclick="clearDone()">清除已完成</button>
-    </div>
-  </div>
-
-  <div class="todo-list" id="todoList"></div>
 </div>
 
 <script>
@@ -226,42 +251,23 @@ var filterStatus = 'all';
 var filterCategory = 'all';
 var editingId = null;
 
-// 加载数据
 try {
   var saved = localStorage.getItem(STORAGE_KEY);
-  if (saved) {
-    todos = JSON.parse(saved);
-    if (!Array.isArray(todos)) todos = [];
-  }
+  if (saved) { todos = JSON.parse(saved); if (!Array.isArray(todos)) todos = []; }
 } catch(e) { todos = []; }
-
-// 兼容旧数据
 for (var i = 0; i < todos.length; i++) {
   if (!todos[i].category) todos[i].category = '其他';
   if (!todos[i].deadline) todos[i].deadline = null;
 }
 
 function pad(n) { return n < 10 ? '0' + n : '' + n; }
-
-function save() {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(todos)); } catch(e) {}
-}
-
+function save() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(todos)); } catch(e) {} }
 function showToast(msg) {
-  var t = document.createElement('div');
-  t.className = 'toast';
-  t.textContent = msg;
-  document.body.appendChild(t);
-  setTimeout(function() { t.remove(); }, 1500);
+  var t = document.createElement('div'); t.className = 'toast'; t.textContent = msg;
+  document.body.appendChild(t); setTimeout(function() { t.remove(); }, 1500);
 }
+function escapeHtml(str) { var d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
 
-function escapeHtml(str) {
-  var d = document.createElement('div');
-  d.textContent = str;
-  return d.innerHTML;
-}
-
-// 设置默认截止时间
 function setDefaultDeadline() {
   try {
     var tmr = new Date(Date.now() + 86400000);
@@ -274,22 +280,19 @@ setDefaultDeadline();
 function getDeadlineValue() {
   var d = document.getElementById('deadlineDate').value;
   var t = document.getElementById('deadlineTime').value || '23:59';
-  if (!d) return null;
-  return d + 'T' + t;
+  return d ? d + 'T' + t : null;
 }
 
 function setQuickTime(offset) {
-  var target = new Date();
-  target.setDate(target.getDate() + offset);
+  var target = new Date(); target.setDate(target.getDate() + offset);
   document.getElementById('deadlineDate').value = target.getFullYear() + '-' + pad(target.getMonth()+1) + '-' + pad(target.getDate());
   document.getElementById('deadlineTime').value = '23:59';
 }
 
 function getTimeStatus(deadline) {
   if (!deadline) return 'normal';
+  var dl = new Date(deadline); if (isNaN(dl.getTime())) return 'normal';
   var now = new Date();
-  var dl = new Date(deadline);
-  if (isNaN(dl.getTime())) return 'normal';
   var todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   var dlDay = new Date(dl.getFullYear(), dl.getMonth(), dl.getDate());
   if (dl < now && dlDay < todayStart) return 'overdue';
@@ -299,170 +302,107 @@ function getTimeStatus(deadline) {
 
 function formatTime(deadline) {
   if (!deadline) return '';
-  var dl = new Date(deadline);
-  if (isNaN(dl.getTime())) return '';
+  var dl = new Date(deadline); if (isNaN(dl.getTime())) return '';
   var now = new Date();
-  var dateStr = (dl.getMonth()+1) + '/' + dl.getDate() + ' ' + pad(dl.getHours()) + ':' + pad(dl.getMinutes());
-  var status = getTimeStatus(deadline);
-  if (status === 'overdue') return '⏰ 已过期 ' + dateStr;
+  var ds = (dl.getMonth()+1) + '/' + dl.getDate() + ' ' + pad(dl.getHours()) + ':' + pad(dl.getMinutes());
+  var s = getTimeStatus(deadline);
+  if (s === 'overdue') return '⏰ 已过期 ' + ds;
   var diff = dl - now;
-  if (diff < 0) return '⏰ 已过期 ' + dateStr;
+  if (diff < 0) return '⏰ 已过期 ' + ds;
   if (diff < 3600000) return '⏳ ' + Math.ceil(diff/60000) + '分钟后';
   if (diff < 86400000) return '⏳ ' + Math.ceil(diff/3600000) + '小时后';
-  return '📅 ' + dateStr;
+  return '📅 ' + ds;
 }
 
-// 添加待办
 function addTodo() {
   var input = document.getElementById('todoInput');
   var text = input.value.trim();
   if (!text) { input.focus(); return; }
-  var todo = {
+  todos.push({
     id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
-    text: text,
-    completed: false,
-    createdAt: new Date().toISOString(),
+    text: text, completed: false, createdAt: new Date().toISOString(),
     deadline: getDeadlineValue(),
     category: document.getElementById('categorySelect').value || '其他'
-  };
-  todos.push(todo);
-  save();
-  render();
+  });
+  save(); render();
   input.value = '';
   document.getElementById('categorySelect').value = '其他';
   setDefaultDeadline();
   input.focus();
-  showToast('已添加待办');
+  showToast('已添加');
 }
 
-// 回车添加
-document.getElementById('todoInput').onkeydown = function(e) {
-  if (e.key === 'Enter') addTodo();
-};
+document.getElementById('todoInput').onkeydown = function(e) { if (e.key === 'Enter') addTodo(); };
 
-// 切换完成
 function toggleTodo(id) {
-  for (var i = 0; i < todos.length; i++) {
-    if (todos[i].id === id) { todos[i].completed = !todos[i].completed; break; }
-  }
-  save();
-  render();
+  for (var i = 0; i < todos.length; i++) { if (todos[i].id === id) { todos[i].completed = !todos[i].completed; break; } }
+  save(); render();
 }
 
-// 删除确认
 function confirmDelete(id) {
   var todo = null;
-  for (var i = 0; i < todos.length; i++) {
-    if (todos[i].id === id) { todo = todos[i]; break; }
-  }
+  for (var i = 0; i < todos.length; i++) { if (todos[i].id === id) { todo = todos[i]; break; } }
   if (!todo) return;
-  var overlay = document.createElement('div');
-  overlay.className = 'confirm-overlay';
-  overlay.innerHTML = '<div class="confirm-box">' +
-    '<div class="confirm-text">确定要删除吗？</div>' +
-    '<div class="confirm-sub">"' + escapeHtml(todo.text) + '"</div>' +
-    '<div class="confirm-btns">' +
-    '<button class="confirm-yes" onclick="doDelete(\'' + id + '\',this)">删除</button>' +
-    '<button class="confirm-no" onclick="this.closest(\'.confirm-overlay\').remove()">取消</button>' +
-    '</div></div>';
-  document.body.appendChild(overlay);
-  overlay.onclick = function(e) { if (e.target === overlay) overlay.remove(); };
+  var ov = document.createElement('div'); ov.className = 'confirm-overlay';
+  ov.innerHTML = '<div class="confirm-box"><div class="confirm-text">确定删除？</div><div class="confirm-sub">"' + escapeHtml(todo.text) + '"</div><div class="confirm-btns"><button class="confirm-yes" onclick="doDelete(\'' + id + '\',this)">删除</button><button class="confirm-no" onclick="this.closest(\'.confirm-overlay\').remove()">取消</button></div></div>';
+  document.body.appendChild(ov);
+  ov.onclick = function(e) { if (e.target === ov) ov.remove(); };
 }
 
 function doDelete(id, btn) {
-  var newTodos = [];
-  for (var j = 0; j < todos.length; j++) {
-    if (todos[j].id !== id) newTodos.push(todos[j]);
-  }
-  todos = newTodos;
-  save();
-  render();
-  btn.closest('.confirm-overlay').remove();
-  showToast('已删除');
+  var n = []; for (var j = 0; j < todos.length; j++) { if (todos[j].id !== id) n.push(todos[j]); }
+  todos = n; save(); render();
+  btn.closest('.confirm-overlay').remove(); showToast('已删除');
 }
 
-// 编辑
-function startEdit(id) {
-  editingId = id;
-  render();
-}
+function startEdit(id) { editingId = id; render(); }
 
 function saveEdit(id) {
   var todo = null;
-  for (var i = 0; i < todos.length; i++) {
-    if (todos[i].id === id) { todo = todos[i]; break; }
-  }
+  for (var i = 0; i < todos.length; i++) { if (todos[i].id === id) { todo = todos[i]; break; } }
   if (!todo) return;
-  var textInput = document.querySelector('.edit-input');
-  var editDate = document.querySelector('.edit-date');
-  var editTime = document.querySelector('.edit-time');
-  var catSelect = document.querySelector('.edit-row .category-select');
-  var newText = textInput.value.trim();
-  if (!newText) { textInput.focus(); return; }
-  todo.text = newText;
-  var dl = editDate.value;
-  var tm = editTime.value || '23:59';
-  todo.deadline = dl ? dl + 'T' + tm : null;
-  todo.category = catSelect.value || '其他';
-  editingId = null;
-  save();
-  render();
-  showToast('已更新');
+  var ti = document.querySelector('.edit-input');
+  var ed = document.querySelector('.edit-date');
+  var et = document.querySelector('.edit-time');
+  var cs = document.querySelector('.edit-row select');
+  var nt = ti.value.trim(); if (!nt) { ti.focus(); return; }
+  todo.text = nt;
+  todo.deadline = ed.value ? ed.value + 'T' + (et.value || '23:59') : null;
+  todo.category = cs.value || '其他';
+  editingId = null; save(); render(); showToast('已更新');
 }
 
-function cancelEdit() {
-  editingId = null;
-  render();
-}
+function cancelEdit() { editingId = null; render(); }
 
-// 筛选
 function setStatusFilter(val, btn) {
   filterStatus = val;
   var btns = document.getElementById('statusFilters').getElementsByClassName('filter-btn');
   for (var i = 0; i < btns.length; i++) btns[i].className = 'filter-btn';
-  btn.className = 'filter-btn active';
-  render();
+  btn.className = 'filter-btn active'; render();
 }
 
 function setCatFilter(val, btn) {
   filterCategory = val;
   var btns = document.getElementById('categoryFilters').getElementsByClassName('filter-btn');
   for (var i = 0; i < btns.length; i++) btns[i].className = 'filter-btn';
-  btn.className = 'filter-btn active';
-  render();
+  btn.className = 'filter-btn active'; render();
 }
 
-// 清除已完成
 function clearDone() {
-  var doneCount = 0;
-  for (var i = 0; i < todos.length; i++) { if (todos[i].completed) doneCount++; }
-  if (doneCount === 0) { showToast('没有已完成的待办'); return; }
-  var overlay = document.createElement('div');
-  overlay.className = 'confirm-overlay';
-  overlay.innerHTML = '<div class="confirm-box">' +
-    '<div class="confirm-text">清除 ' + doneCount + ' 条已完成？</div>' +
-    '<div class="confirm-sub">此操作不可撤销</div>' +
-    '<div class="confirm-btns">' +
-    '<button class="confirm-yes" onclick="doClearDone(this)">清除</button>' +
-    '<button class="confirm-no" onclick="this.closest(\'.confirm-overlay\').remove()">取消</button>' +
-    '</div></div>';
-  document.body.appendChild(overlay);
-  overlay.onclick = function(e) { if (e.target === overlay) overlay.remove(); };
+  var dc = 0; for (var i = 0; i < todos.length; i++) { if (todos[i].completed) dc++; }
+  if (dc === 0) { showToast('没有已完成的'); return; }
+  var ov = document.createElement('div'); ov.className = 'confirm-overlay';
+  ov.innerHTML = '<div class="confirm-box"><div class="confirm-text">清除 ' + dc + ' 条？</div><div class="confirm-btns"><button class="confirm-yes" onclick="doClear(this)">清除</button><button class="confirm-no" onclick="this.closest(\'.confirm-overlay\').remove()">取消</button></div></div>';
+  document.body.appendChild(ov);
+  ov.onclick = function(e) { if (e.target === ov) ov.remove(); };
 }
 
-function doClearDone(btn) {
-  var newTodos = [];
-  for (var j = 0; j < todos.length; j++) {
-    if (!todos[j].completed) newTodos.push(todos[j]);
-  }
-  todos = newTodos;
-  save();
-  render();
-  btn.closest('.confirm-overlay').remove();
-  showToast('已清除');
+function doClear(btn) {
+  var n = []; for (var j = 0; j < todos.length; j++) { if (!todos[j].completed) n.push(todos[j]); }
+  todos = n; save(); render();
+  btn.closest('.confirm-overlay').remove(); showToast('已清除');
 }
 
-// 排序
 function sortTodos(list) {
   return list.sort(function(a, b) {
     if (a.completed !== b.completed) return a.completed ? 1 : -1;
@@ -473,7 +413,6 @@ function sortTodos(list) {
   });
 }
 
-// 渲染
 function render() {
   var filtered = [];
   for (var i = 0; i < todos.length; i++) {
@@ -484,10 +423,8 @@ function render() {
     if (filterCategory !== 'all' && t.category !== filterCategory) continue;
     filtered.push(t);
   }
-
   var sorted = sortTodos(filtered);
 
-  // 统计
   var total = todos.length, done = 0, overdue = 0;
   for (var i = 0; i < todos.length; i++) {
     if (todos[i].completed) done++;
@@ -496,12 +433,11 @@ function render() {
   document.getElementById('totalCount').textContent = total;
   document.getElementById('activeCount').textContent = total - done;
   document.getElementById('overdueCount').textContent = overdue;
-  document.getElementById('progressText').textContent = done + ' / ' + total;
   document.getElementById('progressFill').style.width = total > 0 ? (done / total * 100) + '%' : '0%';
 
   if (sorted.length === 0) {
     var msg = filterCategory !== 'all' ? '没有"' + filterCategory + '"类的待办' :
-      filterStatus === 'all' ? '还没有待办事项，写下你的第一件事吧' : '这里空空的~';
+      filterStatus === 'all' ? '还没有待办，写下第一件事吧' : '这里空空的~';
     document.getElementById('todoList').innerHTML = '<div class="empty-state"><div class="empty-icon">📝</div><div class="empty-text">' + msg + '</div></div>';
     return;
   }
@@ -509,64 +445,41 @@ function render() {
   var html = '';
   for (var i = 0; i < sorted.length; i++) {
     var todo = sorted[i];
-
-    // 编辑模式
     if (editingId === todo.id) {
-      var dVal = todo.deadline ? todo.deadline.split('T')[0] : '';
-      var tVal = todo.deadline && todo.deadline.split('T')[1] ? todo.deadline.split('T')[1].slice(0,5) : '23:59';
+      var dv = todo.deadline ? todo.deadline.split('T')[0] : '';
+      var tv = todo.deadline && todo.deadline.split('T')[1] ? todo.deadline.split('T')[1].slice(0,5) : '23:59';
       var opts = '';
-      for (var c in CATEGORIES) {
-        opts += '<option value="' + c + '"' + (c === todo.category ? ' selected' : '') + '>' + CATEGORIES[c].emoji + ' ' + c + '</option>';
-      }
-      html += '<div class="todo-item">' +
-        '<div class="todo-content">' +
-        '<input class="edit-input" value="' + escapeHtml(todo.text) + '" maxlength="200">' +
-        '<div class="edit-row" style="display:flex;gap:8px;flex-wrap:wrap;">' +
-        '<input type="date" class="time-input edit-date" value="' + dVal + '">' +
-        '<input type="time" class="time-input edit-time" value="' + tVal + '" style="min-width:100px;flex:0.6;">' +
-        '<select class="category-select">' + opts + '</select>' +
-        '<button class="add-btn" style="padding:6px 14px;font-size:0.85rem;" onclick="saveEdit(\'' + todo.id + '\')">保存</button>' +
-        '<button style="border:1.5px solid #e8ddd0;background:#fffdf7;color:#9a8a7a;border-radius:10px;padding:6px 14px;font-size:0.85rem;cursor:pointer;" onclick="cancelEdit()">取消</button>' +
-        '</div></div></div>';
+      for (var c in CATEGORIES) opts += '<option value="' + c + '"' + (c === todo.category ? ' selected' : '') + '>' + CATEGORIES[c].emoji + ' ' + c + '</option>';
+      html += '<div class="todo-item"><div class="todo-content"><input class="edit-input" value="' + escapeHtml(todo.text) + '" maxlength="200"><div class="edit-row" style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;"><input type="date" class="time-input edit-date" value="' + dv + '"><input type="time" class="time-input edit-time" value="' + tv + '" style="width:90px;"><select class="category-select">' + opts + '</select><button class="add-btn" style="padding:4px 12px;font-size:0.8rem;" onclick="saveEdit(\'' + todo.id + '\')">保存</button><button style="border:1px solid #e8ddd0;background:#fffdf7;color:#9a8a7a;border-radius:8px;padding:4px 12px;font-size:0.8rem;cursor:pointer;" onclick="cancelEdit()">取消</button></div></div></div>';
       continue;
     }
-
-    var timeStatus = getTimeStatus(todo.deadline);
+    var ts = getTimeStatus(todo.deadline);
     var cls = 'todo-item';
     if (todo.completed) cls += ' completed';
-    else if (timeStatus === 'overdue') cls += ' overdue';
-    else if (timeStatus === 'today') cls += ' due-today';
-
+    else if (ts === 'overdue') cls += ' overdue';
+    else if (ts === 'today') cls += ' due-today';
     var cat = CATEGORIES[todo.category] || CATEGORIES['其他'];
     var timeStr = formatTime(todo.deadline);
-    var timeClass = 'todo-time';
-    if (!todo.completed && timeStatus === 'overdue') timeClass += ' overdue-time';
-    else if (!todo.completed && timeStatus === 'today') timeClass += ' today-time';
+    var tc = 'todo-time';
+    if (!todo.completed && ts === 'overdue') tc += ' overdue-time';
+    else if (!todo.completed && ts === 'today') tc += ' today-time';
 
     html += '<div class="' + cls + '">' +
       '<div class="todo-check' + (todo.completed ? ' checked' : '') + '" onclick="toggleTodo(\'' + todo.id + '\')"></div>' +
-      '<div class="todo-content">' +
-      '<div class="todo-text">' + escapeHtml(todo.text) + '</div>' +
-      '<div class="todo-meta">' +
-      (timeStr ? '<span class="' + timeClass + '">' + timeStr + '</span>' : '') +
+      '<div class="todo-content"><div class="todo-text">' + escapeHtml(todo.text) + '</div><div class="todo-meta">' +
+      (timeStr ? '<span class="' + tc + '">' + timeStr + '</span>' : '') +
       '<span class="category-tag ' + cat.css + '">' + cat.emoji + ' ' + todo.category + '</span>' +
-      '</div></div>' +
-      '<div class="todo-actions">' +
-      '<button class="todo-action-btn" onclick="startEdit(\'' + todo.id + '\')" title="编辑">✎</button>' +
-      '<button class="todo-action-btn" onclick="confirmDelete(\'' + todo.id + '\')" title="删除">✕</button>' +
+      '</div></div><div class="todo-actions">' +
+      '<button class="todo-action-btn" onclick="startEdit(\'' + todo.id + '\')">✎</button>' +
+      '<button class="todo-action-btn" onclick="confirmDelete(\'' + todo.id + '\')">✕</button>' +
       '</div></div>';
   }
   document.getElementById('todoList').innerHTML = html;
 }
 
-// 初始渲染
 render();
 setInterval(render, 60000);
-
-// Service Worker
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js').catch(function(){});
-}
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('./sw.js').catch(function(){}); }
 </script>
 </body>
 </html>
