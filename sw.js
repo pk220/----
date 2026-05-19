@@ -1,30 +1,23 @@
-const CACHE_NAME = 'todo-journal-v1';
-const FILES = [
-  './',
-  './index.html',
-  './manifest.json',
-  './icon-192.png',
-  './icon-512.png'
-];
+const CACHE_NAME = 'todo-journal-v2';
 
-self.addEventListener('install', e => {
-  e.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(FILES))
-  );
+self.addEventListener('install', function(e) {
   self.skipWaiting();
 });
 
-self.addEventListener('activate', e => {
+self.addEventListener('activate', function(e) {
   e.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
-    )
+    caches.keys().then(function(keys) {
+      return Promise.all(keys.map(function(k) { return caches.delete(k); }));
+    })
   );
   self.clients.claim();
 });
 
-self.addEventListener('fetch', e => {
+self.addEventListener('fetch', function(e) {
+  // 网络优先，失败才用缓存
   e.respondWith(
-    caches.match(e.request).then(r => r || fetch(e.request))
+    fetch(e.request).catch(function() {
+      return caches.match(e.request);
+    })
   );
 });
