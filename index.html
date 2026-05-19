@@ -11,7 +11,6 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="手账待办">
-<link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -38,7 +37,7 @@
 }
 
 body {
-  font-family: 'ZCOOL KuaiLe', cursive, sans-serif;
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', cursive, sans-serif;
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
@@ -54,7 +53,6 @@ body {
   margin: 0 auto;
 }
 
-/* 标题 */
 .title {
   text-align: center;
   font-size: 2rem;
@@ -70,7 +68,6 @@ body {
   margin-bottom: 24px;
 }
 
-/* 进度条 */
 .progress-bar-wrap {
   background: var(--card);
   border: 1.5px dashed var(--border);
@@ -100,7 +97,6 @@ body {
   min-width: 0;
 }
 
-/* 统计 */
 .stats {
   display: flex;
   justify-content: center;
@@ -122,7 +118,6 @@ body {
   margin-right: 3px;
 }
 
-/* 添加区域 */
 .add-section {
   background: var(--card);
   border: 1.5px dashed var(--border);
@@ -184,16 +179,9 @@ body {
   cursor: pointer;
   min-width: 110px;
   transition: border-color 0.2s;
-  appearance: none;
-  -webkit-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' fill='none' stroke='%239a8a7a' stroke-width='1.5'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  padding-right: 32px;
 }
 .category-select:focus { border-color: var(--pink-dark); }
 
-/* 快捷时间按钮 */
 .quick-times {
   display: flex;
   gap: 6px;
@@ -211,7 +199,7 @@ body {
   cursor: pointer;
   transition: all 0.2s;
 }
-.quick-time-btn:hover {
+.quick-time-btn:hover, .quick-time-btn:active {
   border-color: var(--pink-dark);
   color: var(--text);
   background: var(--pink);
@@ -232,7 +220,6 @@ body {
 .add-btn:hover { background: var(--pink-dark); transform: scale(1.03); }
 .add-btn:active { transform: scale(0.97); }
 
-/* 筛选区域 */
 .filter-section {
   margin-bottom: 16px;
 }
@@ -266,7 +253,6 @@ body {
   border-color: var(--pink);
 }
 
-/* 清除已完成 */
 .clear-done-btn {
   border: 1.5px dashed var(--border);
   background: none;
@@ -282,7 +268,6 @@ body {
 }
 .clear-done-btn:hover { border-color: var(--red-dark); color: var(--red-dark); }
 
-/* 待办列表 */
 .todo-list {
   display: flex;
   flex-direction: column;
@@ -309,9 +294,7 @@ body {
 .todo-item:hover {
   box-shadow: 0 3px 12px rgba(90,74,58,0.1);
 }
-.todo-item.completed {
-  opacity: 0.55;
-}
+.todo-item.completed { opacity: 0.55; }
 .todo-item.completed .todo-text {
   text-decoration: line-through;
   color: var(--text-light);
@@ -325,7 +308,6 @@ body {
   background: linear-gradient(135deg, var(--card) 0%, rgba(245,230,163,0.15) 100%);
 }
 
-/* 自定义圆圈 checkbox */
 .todo-check {
   width: 22px;
   height: 22px;
@@ -407,7 +389,6 @@ body {
 .todo-action-btn.edit-btn:hover { color: var(--blue-dark); background: rgba(195,217,244,0.3); }
 .todo-action-btn.del-btn:hover { color: var(--red-dark); background: rgba(244,160,160,0.15); }
 
-/* 编辑模式 */
 .todo-item.editing {
   border-color: var(--blue-dark);
   background: linear-gradient(135deg, var(--card) 0%, rgba(195,217,244,0.12) 100%);
@@ -457,7 +438,6 @@ body {
 }
 .edit-cancel-btn:hover { border-color: var(--pink-dark); }
 
-/* 删除确认弹窗 */
 .confirm-overlay {
   position: fixed;
   inset: 0;
@@ -528,7 +508,6 @@ body {
 }
 .confirm-no:hover { border-color: var(--pink-dark); }
 
-/* Toast 提示 */
 .toast {
   position: fixed;
   bottom: 30px;
@@ -553,7 +532,6 @@ body {
   to { opacity: 0; }
 }
 
-/* 空状态 */
 .empty-state {
   text-align: center;
   padding: 40px 20px;
@@ -562,7 +540,6 @@ body {
 .empty-icon { font-size: 2.5rem; margin-bottom: 10px; }
 .empty-text { font-size: 1rem; }
 
-/* 响应式 */
 @media (max-width: 480px) {
   body { padding: 12px; }
   .title { font-size: 1.6rem; }
@@ -581,7 +558,6 @@ body {
   <div class="title"><span class="title-icon">📒</span> 我的手账待办</div>
   <div class="subtitle">记录每一件重要的事</div>
 
-  <!-- 进度条 -->
   <div class="progress-bar-wrap">
     <div class="progress-label">
       <span>完成进度</span>
@@ -592,21 +568,20 @@ body {
     </div>
   </div>
 
-  <!-- 统计 -->
   <div class="stats">
     <div class="stat-item"><span class="stat-num" id="totalCount">0</span>全部</div>
     <div class="stat-item"><span class="stat-num" id="activeCount">0</span>待完成</div>
     <div class="stat-item"><span class="stat-num" id="overdueCount">0</span>已过期</div>
   </div>
 
-  <!-- 添加待办 -->
   <div class="add-section">
     <div class="add-row">
       <input type="text" class="add-input" id="todoInput" placeholder="写下你要做的事..." maxlength="200">
       <button class="add-btn" id="addBtn">添加</button>
     </div>
     <div class="add-row2">
-      <input type="datetime-local" class="time-input" id="deadlineInput">
+      <input type="date" class="time-input" id="deadlineDate" placeholder="截止日期">
+      <input type="time" class="time-input" id="deadlineTime" placeholder="截止时间" style="min-width:100px;flex:0.6;">
       <select class="category-select" id="categorySelect">
         <option value="其他">📌 分类</option>
         <option value="作业">📚 作业</option>
@@ -626,7 +601,6 @@ body {
     </div>
   </div>
 
-  <!-- 筛选 -->
   <div class="filter-section">
     <span class="filter-label">按状态：</span>
     <div class="filter-row">
@@ -651,382 +625,433 @@ body {
     </div>
   </div>
 
-  <!-- 待办列表 -->
   <div class="todo-list" id="todoList"></div>
 </div>
 
 <script>
-const STORAGE_KEY = 'my-todo-journal';
+(function() {
+  var STORAGE_KEY = 'my-todo-journal';
 
-const CATEGORIES = {
-  '作业': { emoji: '📚', css: 'cat-作业' },
-  '会议': { emoji: '💼', css: 'cat-会议' },
-  '游戏': { emoji: '🎮', css: 'cat-游戏' },
-  '考试': { emoji: '📝', css: 'cat-考试' },
-  '运动': { emoji: '⚽', css: 'cat-运动' },
-  '学习': { emoji: '📖', css: 'cat-学习' },
-  '其他': { emoji: '📎', css: 'cat-其他' }
-};
-
-let todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]').map(t => ({
-  ...t,
-  category: t.category || '其他',
-  deadline: t.deadline || null
-}));
-let filterStatus = 'all';
-let filterCategory = 'all';
-let editingId = null;
-
-const todoInput = document.getElementById('todoInput');
-const deadlineInput = document.getElementById('deadlineInput');
-const categorySelect = document.getElementById('categorySelect');
-const addBtn = document.getElementById('addBtn');
-const todoList = document.getElementById('todoList');
-const totalCount = document.getElementById('totalCount');
-const activeCount = document.getElementById('activeCount');
-const overdueCount = document.getElementById('overdueCount');
-const progressText = document.getElementById('progressText');
-const progressFill = document.getElementById('progressFill');
-const clearDoneBtn = document.getElementById('clearDoneBtn');
-
-// 工具函数
-const pad = n => String(n).padStart(2, '0');
-
-function formatDateTime(date) {
-  return `${date.getFullYear()}-${pad(date.getMonth()+1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
-}
-
-function setDefaultDeadline() {
-  deadlineInput.value = formatDateTime(new Date(Date.now() + 86400000));
-}
-setDefaultDeadline();
-
-function save() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
-}
-
-function showToast(msg) {
-  const toast = document.createElement('div');
-  toast.className = 'toast';
-  toast.textContent = msg;
-  document.body.appendChild(toast);
-  setTimeout(() => toast.remove(), 2000);
-}
-
-function escapeHtml(str) {
-  const div = document.createElement('div');
-  div.textContent = str;
-  return div.innerHTML;
-}
-
-// 时间状态
-function getTimeStatus(deadline) {
-  if (!deadline) return 'normal';
-  const now = new Date();
-  const dl = new Date(deadline);
-  const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const dlDay = new Date(dl.getFullYear(), dl.getMonth(), dl.getDate());
-  if (dl < now && dlDay < todayStart) return 'overdue';
-  if (dlDay.getTime() === todayStart.getTime()) return 'today';
-  return 'normal';
-}
-
-function formatTime(deadline) {
-  if (!deadline) return '';
-  const dl = new Date(deadline);
-  const now = new Date();
-  const dateStr = `${dl.getMonth()+1}/${dl.getDate()} ${pad(dl.getHours())}:${pad(dl.getMinutes())}`;
-  const status = getTimeStatus(deadline);
-  if (status === 'overdue') return '⏰ 已过期 ' + dateStr;
-  const diff = dl - now;
-  if (diff < 0) return '⏰ 已过期 ' + dateStr;
-  if (diff < 3600000) return '⏳ ' + Math.ceil(diff/60000) + '分钟后';
-  if (diff < 86400000) return '⏳ ' + Math.ceil(diff/3600000) + '小时后';
-  return '📅 ' + dateStr;
-}
-
-// 添加待办
-function addTodo() {
-  const text = todoInput.value.trim();
-  if (!text) { todoInput.focus(); return; }
-  const todo = {
-    id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
-    text,
-    completed: false,
-    createdAt: new Date().toISOString(),
-    deadline: deadlineInput.value || null,
-    category: categorySelect.value || '其他'
+  var CATEGORIES = {
+    '作业': { emoji: '📚', css: 'cat-作业' },
+    '会议': { emoji: '💼', css: 'cat-会议' },
+    '游戏': { emoji: '🎮', css: 'cat-游戏' },
+    '考试': { emoji: '📝', css: 'cat-考试' },
+    '运动': { emoji: '⚽', css: 'cat-运动' },
+    '学习': { emoji: '📖', css: 'cat-学习' },
+    '其他': { emoji: '📎', css: 'cat-其他' }
   };
-  todos.push(todo);
-  save();
-  render();
-  todoInput.value = '';
-  categorySelect.value = '其他';
+
+  var todos = [];
+  try {
+    var saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      todos = JSON.parse(saved);
+      if (!Array.isArray(todos)) todos = [];
+    }
+  } catch(e) {
+    todos = [];
+  }
+  // 兼容旧数据
+  for (var i = 0; i < todos.length; i++) {
+    if (!todos[i].category) todos[i].category = '其他';
+    if (!todos[i].deadline) todos[i].deadline = null;
+  }
+
+  var filterStatus = 'all';
+  var filterCategory = 'all';
+  var editingId = null;
+
+  var todoInput = document.getElementById('todoInput');
+  var deadlineDate = document.getElementById('deadlineDate');
+  var deadlineTime = document.getElementById('deadlineTime');
+  var categorySelect = document.getElementById('categorySelect');
+  var addBtn = document.getElementById('addBtn');
+  var todoList = document.getElementById('todoList');
+  var totalCount = document.getElementById('totalCount');
+  var activeCount = document.getElementById('activeCount');
+  var overdueCount = document.getElementById('overdueCount');
+  var progressText = document.getElementById('progressText');
+  var progressFill = document.getElementById('progressFill');
+  var clearDoneBtn = document.getElementById('clearDoneBtn');
+
+  function pad(n) {
+    return n < 10 ? '0' + n : '' + n;
+  }
+
+  // 设置默认截止日期为明天
+  function setDefaultDeadline() {
+    try {
+      var tomorrow = new Date(Date.now() + 86400000);
+      deadlineDate.value = tomorrow.getFullYear() + '-' + pad(tomorrow.getMonth()+1) + '-' + pad(tomorrow.getDate());
+      deadlineTime.value = '23:59';
+    } catch(e) {}
+  }
   setDefaultDeadline();
-  todoInput.focus();
-  showToast('已添加待办');
-}
 
-// 切换完成
-function toggleTodo(id) {
-  const todo = todos.find(t => t.id === id);
-  if (todo) {
-    todo.completed = !todo.completed;
+  function save() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+    } catch(e) {}
+  }
+
+  function showToast(msg) {
+    var toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = msg;
+    document.body.appendChild(toast);
+    setTimeout(function() { toast.remove(); }, 2000);
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function getDeadlineValue() {
+    var d = deadlineDate.value;
+    var t = deadlineTime.value || '23:59';
+    if (!d) return null;
+    return d + 'T' + t;
+  }
+
+  function getTimeStatus(deadline) {
+    if (!deadline) return 'normal';
+    var now = new Date();
+    var dl = new Date(deadline);
+    if (isNaN(dl.getTime())) return 'normal';
+    var todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var dlDay = new Date(dl.getFullYear(), dl.getMonth(), dl.getDate());
+    if (dl < now && dlDay < todayStart) return 'overdue';
+    if (dlDay.getTime() === todayStart.getTime()) return 'today';
+    return 'normal';
+  }
+
+  function formatTime(deadline) {
+    if (!deadline) return '';
+    var dl = new Date(deadline);
+    if (isNaN(dl.getTime())) return '';
+    var now = new Date();
+    var dateStr = (dl.getMonth()+1) + '/' + dl.getDate() + ' ' + pad(dl.getHours()) + ':' + pad(dl.getMinutes());
+    var status = getTimeStatus(deadline);
+    if (status === 'overdue') return '⏰ 已过期 ' + dateStr;
+    var diff = dl - now;
+    if (diff < 0) return '⏰ 已过期 ' + dateStr;
+    if (diff < 3600000) return '⏳ ' + Math.ceil(diff/60000) + '分钟后';
+    if (diff < 86400000) return '⏳ ' + Math.ceil(diff/3600000) + '小时后';
+    return '📅 ' + dateStr;
+  }
+
+  function addTodo() {
+    var text = todoInput.value.trim();
+    if (!text) {
+      todoInput.focus();
+      return;
+    }
+    var todo = {
+      id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+      text: text,
+      completed: false,
+      createdAt: new Date().toISOString(),
+      deadline: getDeadlineValue(),
+      category: categorySelect.value || '其他'
+    };
+    todos.push(todo);
+    save();
+    render();
+    todoInput.value = '';
+    categorySelect.value = '其他';
+    setDefaultDeadline();
+    todoInput.focus();
+    showToast('已添加待办');
+  }
+
+  function toggleTodo(id) {
+    for (var i = 0; i < todos.length; i++) {
+      if (todos[i].id === id) {
+        todos[i].completed = !todos[i].completed;
+        break;
+      }
+    }
     save();
     render();
   }
-}
 
-// 删除确认
-function confirmDelete(id) {
-  const todo = todos.find(t => t.id === id);
-  if (!todo) return;
-  const overlay = document.createElement('div');
-  overlay.className = 'confirm-overlay';
-  overlay.innerHTML = `
-    <div class="confirm-box">
-      <div class="confirm-text">确定要删除吗？</div>
-      <div class="confirm-sub">"${escapeHtml(todo.text)}"</div>
-      <div class="confirm-btns">
-        <button class="confirm-yes">删除</button>
-        <button class="confirm-no">取消</button>
-      </div>
-    </div>`;
-  document.body.appendChild(overlay);
-  overlay.querySelector('.confirm-yes').onclick = () => {
-    todos = todos.filter(t => t.id !== id);
-    save();
-    render();
-    overlay.remove();
-    showToast('已删除');
-  };
-  overlay.querySelector('.confirm-no').onclick = () => overlay.remove();
-  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
-}
-
-// 开始编辑
-function startEdit(id) {
-  editingId = id;
-  render();
-}
-
-// 保存编辑
-function saveEdit(id) {
-  const todo = todos.find(t => t.id === id);
-  if (!todo) return;
-  const textInput = document.querySelector('.edit-input');
-  const timeInput = document.querySelector('.edit-row .time-input');
-  const catSelect = document.querySelector('.edit-row .category-select');
-  const newText = textInput.value.trim();
-  if (!newText) { textInput.focus(); return; }
-  todo.text = newText;
-  todo.deadline = timeInput.value || null;
-  todo.category = catSelect.value || '其他';
-  editingId = null;
-  save();
-  render();
-  showToast('已更新');
-}
-
-// 取消编辑
-function cancelEdit() {
-  editingId = null;
-  render();
-}
-
-// 清除已完成
-function clearDone() {
-  const doneCount = todos.filter(t => t.completed).length;
-  if (doneCount === 0) { showToast('没有已完成的待办'); return; }
-  const overlay = document.createElement('div');
-  overlay.className = 'confirm-overlay';
-  overlay.innerHTML = `
-    <div class="confirm-box">
-      <div class="confirm-text">清除 ${doneCount} 条已完成？</div>
-      <div class="confirm-sub">此操作不可撤销</div>
-      <div class="confirm-btns">
-        <button class="confirm-yes">清除</button>
-        <button class="confirm-no">取消</button>
-      </div>
-    </div>`;
-  document.body.appendChild(overlay);
-  overlay.querySelector('.confirm-yes').onclick = () => {
-    todos = todos.filter(t => !t.completed);
-    save();
-    render();
-    overlay.remove();
-    showToast('已清除');
-  };
-  overlay.querySelector('.confirm-no').onclick = () => overlay.remove();
-  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
-}
-
-// 排序
-function sortTodos(list) {
-  return list.sort((a, b) => {
-    if (a.completed !== b.completed) return a.completed ? 1 : -1;
-    if (a.completed) return new Date(b.createdAt) - new Date(a.createdAt);
-    const da = a.deadline ? new Date(a.deadline).getTime() : Infinity;
-    const db = b.deadline ? new Date(b.deadline).getTime() : Infinity;
-    return da - db;
-  });
-}
-
-// 渲染
-function render() {
-  // 筛选
-  let filtered = todos;
-  if (filterStatus === 'active') filtered = filtered.filter(t => !t.completed);
-  else if (filterStatus === 'completed') filtered = filtered.filter(t => t.completed);
-  else if (filterStatus === 'overdue') filtered = filtered.filter(t => !t.completed && getTimeStatus(t.deadline) === 'overdue');
-  if (filterCategory !== 'all') filtered = filtered.filter(t => t.category === filterCategory);
-
-  const sorted = sortTodos([...filtered]);
-
-  // 统计
-  const total = todos.length;
-  const done = todos.filter(t => t.completed).length;
-  const active = total - done;
-  const overdue = todos.filter(t => !t.completed && getTimeStatus(t.deadline) === 'overdue').length;
-  totalCount.textContent = total;
-  doneCount.textContent = done;
-  activeCount.textContent = active;
-  overdueCount.textContent = overdue;
-  progressText.textContent = `${done} / ${total}`;
-  progressFill.style.width = total > 0 ? (done / total * 100) + '%' : '0%';
-
-  if (sorted.length === 0) {
-    const emptyMsg = filterCategory !== 'all'
-      ? `没有"${filterCategory}"类的待办`
-      : filterStatus === 'all' ? '还没有待办事项，写下你的第一件事吧' : '这里空空的~';
-    todoList.innerHTML = `
-      <div class="empty-state">
-        <div class="empty-icon">📝</div>
-        <div class="empty-text">${emptyMsg}</div>
-      </div>`;
-    return;
+  function confirmDelete(id) {
+    var todo = null;
+    for (var i = 0; i < todos.length; i++) {
+      if (todos[i].id === id) { todo = todos[i]; break; }
+    }
+    if (!todo) return;
+    var overlay = document.createElement('div');
+    overlay.className = 'confirm-overlay';
+    overlay.innerHTML = '<div class="confirm-box">' +
+      '<div class="confirm-text">确定要删除吗？</div>' +
+      '<div class="confirm-sub">"' + escapeHtml(todo.text) + '"</div>' +
+      '<div class="confirm-btns">' +
+      '<button class="confirm-yes">删除</button>' +
+      '<button class="confirm-no">取消</button>' +
+      '</div></div>';
+    document.body.appendChild(overlay);
+    overlay.querySelector('.confirm-yes').onclick = function() {
+      var newTodos = [];
+      for (var j = 0; j < todos.length; j++) {
+        if (todos[j].id !== id) newTodos.push(todos[j]);
+      }
+      todos = newTodos;
+      save();
+      render();
+      overlay.remove();
+      showToast('已删除');
+    };
+    overlay.querySelector('.confirm-no').onclick = function() { overlay.remove(); };
+    overlay.onclick = function(e) { if (e.target === overlay) overlay.remove(); };
   }
 
-  todoList.innerHTML = sorted.map(todo => {
-    if (editingId === todo.id) {
-      return `
-        <div class="todo-item editing">
-          <div class="todo-content">
-            <input class="edit-input" value="${escapeHtml(todo.text)}" id="editInput" maxlength="200">
-            <div class="edit-row">
-              <input type="datetime-local" class="time-input" value="${todo.deadline || ''}">
-              <select class="category-select">
-                ${Object.keys(CATEGORIES).map(c =>
-                  `<option value="${c}" ${c === todo.category ? 'selected' : ''}>${CATEGORIES[c].emoji} ${c}</option>`
-                ).join('')}
-              </select>
-              <button class="edit-save-btn" onclick="saveEdit('${todo.id}')">保存</button>
-              <button class="edit-cancel-btn" onclick="cancelEdit()">取消</button>
-            </div>
-          </div>
-        </div>`;
+  function startEdit(id) {
+    editingId = id;
+    render();
+  }
+
+  function saveEdit(id) {
+    var todo = null;
+    for (var i = 0; i < todos.length; i++) {
+      if (todos[i].id === id) { todo = todos[i]; break; }
+    }
+    if (!todo) return;
+    var textInput = document.querySelector('.edit-input');
+    var editDate = document.querySelector('.edit-row .edit-date');
+    var editTimeEl = document.querySelector('.edit-row .edit-time');
+    var catSelect = document.querySelector('.edit-row .category-select');
+    var newText = textInput.value.trim();
+    if (!newText) { textInput.focus(); return; }
+    todo.text = newText;
+    var dl = editDate.value;
+    var tm = editTimeEl.value || '23:59';
+    todo.deadline = dl ? dl + 'T' + tm : null;
+    todo.category = catSelect.value || '其他';
+    editingId = null;
+    save();
+    render();
+    showToast('已更新');
+  }
+
+  function cancelEdit() {
+    editingId = null;
+    render();
+  }
+
+  function clearDone() {
+    var doneCount = 0;
+    for (var i = 0; i < todos.length; i++) {
+      if (todos[i].completed) doneCount++;
+    }
+    if (doneCount === 0) { showToast('没有已完成的待办'); return; }
+    var overlay = document.createElement('div');
+    overlay.className = 'confirm-overlay';
+    overlay.innerHTML = '<div class="confirm-box">' +
+      '<div class="confirm-text">清除 ' + doneCount + ' 条已完成？</div>' +
+      '<div class="confirm-sub">此操作不可撤销</div>' +
+      '<div class="confirm-btns">' +
+      '<button class="confirm-yes">清除</button>' +
+      '<button class="confirm-no">取消</button>' +
+      '</div></div>';
+    document.body.appendChild(overlay);
+    overlay.querySelector('.confirm-yes').onclick = function() {
+      var newTodos = [];
+      for (var j = 0; j < todos.length; j++) {
+        if (!todos[j].completed) newTodos.push(todos[j]);
+      }
+      todos = newTodos;
+      save();
+      render();
+      overlay.remove();
+      showToast('已清除');
+    };
+    overlay.querySelector('.confirm-no').onclick = function() { overlay.remove(); };
+    overlay.onclick = function(e) { if (e.target === overlay) overlay.remove(); };
+  }
+
+  function sortTodos(list) {
+    return list.sort(function(a, b) {
+      if (a.completed !== b.completed) return a.completed ? 1 : -1;
+      if (a.completed) return new Date(b.createdAt) - new Date(a.createdAt);
+      var da = a.deadline ? new Date(a.deadline).getTime() : Infinity;
+      var db = b.deadline ? new Date(b.deadline).getTime() : Infinity;
+      return da - db;
+    });
+  }
+
+  function render() {
+    var filtered = todos;
+    if (filterStatus === 'active') {
+      var f = [];
+      for (var i = 0; i < filtered.length; i++) { if (!filtered[i].completed) f.push(filtered[i]); }
+      filtered = f;
+    } else if (filterStatus === 'completed') {
+      var f = [];
+      for (var i = 0; i < filtered.length; i++) { if (filtered[i].completed) f.push(filtered[i]); }
+      filtered = f;
+    } else if (filterStatus === 'overdue') {
+      var f = [];
+      for (var i = 0; i < filtered.length; i++) {
+        if (!filtered[i].completed && getTimeStatus(filtered[i].deadline) === 'overdue') f.push(filtered[i]);
+      }
+      filtered = f;
+    }
+    if (filterCategory !== 'all') {
+      var f = [];
+      for (var i = 0; i < filtered.length; i++) { if (filtered[i].category === filterCategory) f.push(filtered[i]); }
+      filtered = f;
     }
 
-    const timeStatus = getTimeStatus(todo.deadline);
-    let itemClass = 'todo-item';
-    if (todo.completed) itemClass += ' completed';
-    else if (timeStatus === 'overdue') itemClass += ' overdue';
-    else if (timeStatus === 'today') itemClass += ' due-today';
+    var sorted = sortTodos(filtered.slice());
 
-    const cat = CATEGORIES[todo.category] || CATEGORIES['其他'];
-    const timeStr = formatTime(todo.deadline);
-    let timeClass = 'todo-time';
-    if (!todo.completed && timeStatus === 'overdue') timeClass += ' overdue-time';
-    else if (!todo.completed && timeStatus === 'today') timeClass += ' today-time';
+    var total = todos.length;
+    var done = 0;
+    var overdue = 0;
+    for (var i = 0; i < todos.length; i++) {
+      if (todos[i].completed) done++;
+      else if (getTimeStatus(todos[i].deadline) === 'overdue') overdue++;
+    }
+    var active = total - done;
+    totalCount.textContent = total;
+    doneCount.textContent = done;
+    activeCount.textContent = active;
+    overdueCount.textContent = overdue;
+    progressText.textContent = done + ' / ' + total;
+    progressFill.style.width = total > 0 ? (done / total * 100) + '%' : '0%';
 
-    return `
-      <div class="${itemClass}">
-        <div class="todo-check ${todo.completed ? 'checked' : ''}" onclick="toggleTodo('${todo.id}')"></div>
-        <div class="todo-content">
-          <div class="todo-text">${escapeHtml(todo.text)}</div>
-          <div class="todo-meta">
-            ${timeStr ? `<span class="${timeClass}">${timeStr}</span>` : ''}
-            <span class="category-tag ${cat.css}">${cat.emoji} ${todo.category}</span>
-          </div>
-        </div>
-        <div class="todo-actions">
-          <button class="todo-action-btn edit-btn" onclick="startEdit('${todo.id}')" title="编辑">✎</button>
-          <button class="todo-action-btn del-btn" onclick="confirmDelete('${todo.id}')" title="删除">✕</button>
-        </div>
-      </div>`;
-  }).join('');
+    if (sorted.length === 0) {
+      var emptyMsg = filterCategory !== 'all'
+        ? '没有"' + filterCategory + '"类的待办'
+        : filterStatus === 'all' ? '还没有待办事项，写下你的第一件事吧' : '这里空空的~';
+      todoList.innerHTML = '<div class="empty-state">' +
+        '<div class="empty-icon">📝</div>' +
+        '<div class="empty-text">' + emptyMsg + '</div></div>';
+      return;
+    }
 
-  // 编辑模式自动聚焦
-  if (editingId) {
-    const editInput = document.getElementById('editInput');
-    if (editInput) { editInput.focus(); editInput.setSelectionRange(editInput.value.length, editInput.value.length); }
+    var html = '';
+    for (var i = 0; i < sorted.length; i++) {
+      var todo = sorted[i];
+      if (editingId === todo.id) {
+        var dVal = todo.deadline ? todo.deadline.split('T')[0] : '';
+        var tVal = todo.deadline && todo.deadline.split('T')[1] ? todo.deadline.split('T')[1].slice(0,5) : '23:59';
+        var opts = '';
+        for (var c in CATEGORIES) {
+          opts += '<option value="' + c + '"' + (c === todo.category ? ' selected' : '') + '>' + CATEGORIES[c].emoji + ' ' + c + '</option>';
+        }
+        html += '<div class="todo-item editing">' +
+          '<div class="todo-content">' +
+          '<input class="edit-input" value="' + escapeHtml(todo.text) + '" maxlength="200">' +
+          '<div class="edit-row">' +
+          '<input type="date" class="time-input edit-date" value="' + dVal + '">' +
+          '<input type="time" class="time-input edit-time" value="' + tVal + '" style="min-width:100px;flex:0.6;">' +
+          '<select class="category-select">' + opts + '</select>' +
+          '<button class="edit-save-btn" onclick="window._saveEdit(\'' + todo.id + '\')">保存</button>' +
+          '<button class="edit-cancel-btn" onclick="window._cancelEdit()">取消</button>' +
+          '</div></div></div>';
+        continue;
+      }
+
+      var timeStatus = getTimeStatus(todo.deadline);
+      var itemClass = 'todo-item';
+      if (todo.completed) itemClass += ' completed';
+      else if (timeStatus === 'overdue') itemClass += ' overdue';
+      else if (timeStatus === 'today') itemClass += ' due-today';
+
+      var cat = CATEGORIES[todo.category] || CATEGORIES['其他'];
+      var timeStr = formatTime(todo.deadline);
+      var timeClass = 'todo-time';
+      if (!todo.completed && timeStatus === 'overdue') timeClass += ' overdue-time';
+      else if (!todo.completed && timeStatus === 'today') timeClass += ' today-time';
+
+      html += '<div class="' + itemClass + '">' +
+        '<div class="todo-check' + (todo.completed ? ' checked' : '') + '" onclick="window._toggleTodo(\'' + todo.id + '\')"></div>' +
+        '<div class="todo-content">' +
+        '<div class="todo-text">' + escapeHtml(todo.text) + '</div>' +
+        '<div class="todo-meta">' +
+        (timeStr ? '<span class="' + timeClass + '">' + timeStr + '</span>' : '') +
+        '<span class="category-tag ' + cat.css + '">' + cat.emoji + ' ' + todo.category + '</span>' +
+        '</div></div>' +
+        '<div class="todo-actions">' +
+        '<button class="todo-action-btn edit-btn" onclick="window._startEdit(\'' + todo.id + '\')" title="编辑">✎</button>' +
+        '<button class="todo-action-btn del-btn" onclick="window._confirmDelete(\'' + todo.id + '\')" title="删除">✕</button>' +
+        '</div></div>';
+    }
+    todoList.innerHTML = html;
+
+    if (editingId) {
+      var editInput = document.querySelector('.edit-input');
+      if (editInput) { editInput.focus(); }
+    }
   }
-}
 
-// 快捷时间按钮
-document.querySelectorAll('.quick-time-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const offset = parseInt(btn.dataset.offset);
-    const target = new Date();
-    target.setDate(target.getDate() + offset);
-    target.setHours(23, 59, 0, 0);
-    deadlineInput.value = formatDateTime(target);
+  // 暴露函数给 onclick
+  window._toggleTodo = toggleTodo;
+  window._confirmDelete = confirmDelete;
+  window._startEdit = startEdit;
+  window._saveEdit = saveEdit;
+  window._cancelEdit = cancelEdit;
+
+  // 快捷时间按钮
+  var quickBtns = document.querySelectorAll('.quick-time-btn');
+  for (var i = 0; i < quickBtns.length; i++) {
+    quickBtns[i].addEventListener('click', function() {
+      var offset = parseInt(this.getAttribute('data-offset'));
+      var target = new Date();
+      target.setDate(target.getDate() + offset);
+      deadlineDate.value = target.getFullYear() + '-' + pad(target.getMonth()+1) + '-' + pad(target.getDate());
+      deadlineTime.value = '23:59';
+    });
+  }
+
+  // 添加按钮
+  addBtn.addEventListener('click', addTodo);
+
+  // 回车添加
+  todoInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') addTodo();
   });
-});
 
-// 添加
-addBtn.addEventListener('click', addTodo);
-todoInput.addEventListener('keydown', e => { if (e.key === 'Enter') addTodo(); });
+  // 状态筛选
+  var statusBtns = document.querySelectorAll('.filter-btn[data-type="status"]');
+  for (var i = 0; i < statusBtns.length; i++) {
+    statusBtns[i].addEventListener('click', function() {
+      var active = document.querySelector('.filter-btn[data-type="status"].active');
+      if (active) active.classList.remove('active');
+      this.classList.add('active');
+      filterStatus = this.getAttribute('data-filter');
+      render();
+    });
+  }
 
-// 状态筛选
-document.querySelectorAll('.filter-btn[data-type="status"]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelector('.filter-btn[data-type="status"].active').classList.remove('active');
-    btn.classList.add('active');
-    filterStatus = btn.dataset.filter;
-    render();
-  });
-});
+  // 分类筛选
+  var catBtns = document.querySelectorAll('.filter-btn[data-type="category"]');
+  for (var i = 0; i < catBtns.length; i++) {
+    catBtns[i].addEventListener('click', function() {
+      var active = document.querySelector('.filter-btn[data-type="category"].active');
+      if (active) active.classList.remove('active');
+      this.classList.add('active');
+      filterCategory = this.getAttribute('data-filter');
+      render();
+    });
+  }
 
-// 分类筛选
-document.querySelectorAll('.filter-btn[data-type="category"]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelector('.filter-btn[data-type="category"].active').classList.remove('active');
-    btn.classList.add('active');
-    filterCategory = btn.dataset.filter;
-    render();
-  });
-});
+  // 清除已完成
+  clearDoneBtn.addEventListener('click', clearDone);
 
-// 清除已完成
-clearDoneBtn.addEventListener('click', clearDone);
+  // 初始渲染
+  render();
+  setInterval(render, 60000);
 
-// 初始渲染
-render();
-setInterval(render, 60000);
-
-// 注册 Service Worker（PWA 离线支持）
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js');
-}
-</script>
-
-<!-- 安装提示 -->
-<script>
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  deferredPrompt = e;
-  const tip = document.createElement('div');
-  tip.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#5a4a3a;color:#fffdf7;padding:12px 24px;border-radius:16px;font-family:inherit;font-size:0.95rem;z-index:300;cursor:pointer;box-shadow:0 4px 15px rgba(90,74,58,0.3);';
-  tip.textContent = '📲 点击安装到桌面';
-  tip.onclick = () => {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(() => { tip.remove(); deferredPrompt = null; });
-  };
-  document.body.appendChild(tip);
-  setTimeout(() => tip.remove(), 15000);
-});
+  // 注册 Service Worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js').catch(function(){});
+  }
+})();
 </script>
 </body>
 </html>
